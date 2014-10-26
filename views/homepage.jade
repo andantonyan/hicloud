@@ -1,4 +1,7 @@
 extends ./layout
 
 block body
-  //- .application(ng-app='HiCloud', ng-controller='MainCtrl as main', ng-init="main.init()")
+	.hiCloud(ng-app='hiCloud', ng-controller='MainCtrl as main', ng-init="main.init()")
+		.main(ui-view)
+			h1 Response from sails api (using socket request)
+			h3 {{sails | json}}

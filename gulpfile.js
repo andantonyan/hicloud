@@ -9,6 +9,7 @@ var gulp = require('gulp'),
   sh = require('shelljs'),
   plumber = require('gulp-plumber'),
   uglify = require('gulp-uglify'),
+  traceur = require('gulp-traceur'),
   paths = {
     scripts: ['./app/scripts/**/!(app)*.js', './app/scripts/app.js'],
     sass: ['./app/assets/sass/**/!(app)*.scss', './app/assets/sass/app.scss'],
@@ -21,6 +22,7 @@ gulp.task('scripts', function(done) {
   gulp.src(paths.scripts)
     .pipe(plumber())
     .pipe(concat('app.js'))
+    .pipe(traceur())
     .pipe(gulp.dest('./public/build/js/'))
     .pipe(uglify({mangle: false}))
     .pipe(rename({ extname: '.min.js' }))
