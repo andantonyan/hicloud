@@ -9,7 +9,7 @@ var app = angular.module('hiCloud', [
 app.controller('MainCtrl', MainController);
 
 //Services
-app.factory('testService', testService);
+app.service('testService', TestService);
 
 //Directives
 

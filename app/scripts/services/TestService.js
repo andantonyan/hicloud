@@ -17,8 +17,5 @@ class TestService {
             });
         return deferred.promise;
     }
+    
 }
-
-var testService = function ($q, $sails) {
-    return new TestService($q, $sails);
-};
