@@ -119,3 +119,6 @@ nbproject
 
 #bower directory
 public/vendor
+
+#build directory
+public/build
