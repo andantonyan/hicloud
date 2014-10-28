@@ -1,5 +1,10 @@
 {
   "generators": {
-    "modules": {}
+    "modules": {
+	    "gruntfile": "sails-generate-gulpfile"
+    }
+  },
+  "hooks": {
+    "grunt": false
   }
 }
