@@ -48,4 +48,15 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+  
+  '*': true,
+
+  'UserController': {
+    'add': ['tokenAuth', 'ownAssociations'],
+    'create': true,
+    'findOne': ['tokenAuth', 'ownUser'],
+    'populate': ['tokenAuth', 'ownAssociations'],
+    'remove': ['tokenAuth', 'ownAssociations'],
+    '*': false
+  } 
 };
