@@ -8,6 +8,8 @@ var app = angular.module('hiCloud', [
 //Controllers
 app.controller('MainCtrl', MainController);
 app.controller('HomeCtrl', HomeController);
+app.controller('HeaderCtrl', HeaderController);
+app.controller('LoginCtrl', LoginController);
 
 //Services
 app.factory('localService', LocalServiceFactory);
@@ -37,6 +39,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: '/build/views/home.html',
 			controller: 'HomeCtrl',
 			controllerAs: 'home'
+		})
+		.state('login', {
+			url: '/login',
+			templateUrl: '/build/views/user/login.html',
+			controller: 'LoginCtrl',
+			controllerAs: 'login'
 		});
 
 	$urlRouterProvider.otherwise('/home');

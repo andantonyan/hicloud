@@ -3,6 +3,7 @@ class HomeController {
 		this.scope = $scope;
 	}
 	init() {
+		
 	}
   
 }

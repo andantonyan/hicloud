@@ -1,23 +1,23 @@
-nav.navbar.navbar-default(role="navigation")
-	.container-fluid
-		// Brand and toggle get grouped for better mobile display
-		.navbar-header
-			button.navbar-toggle(type="button", ng-click="isCollapsed = !isCollapsed")
-				span.sr-only Toggle navigation
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			a.navbar-brand(href="#") Hi Cloud
-		// Collect the nav links, forms, and other content for toggling
-		.collapse.navbar-collapse(collapse="isCollapsed")
-			ul.nav.navbar-nav.navbar-right
-				li(ng-hide="auth.isAuthenticated()")
-					a(href="#/login") Login
-				li(ng-hide="auth.isAuthenticated()")
-					a(href="#/register") Register
-				li(ng-show="auth.isAuthenticated()")
-					p.navbar-text
-						| Hello,
-						strong {{user().email}}
-				li(ng-show="auth.isAuthenticated()")
-					a(href="#", ng-click="logout()") Logout
+header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
+	| {{header.auth.isAuthenticated()}}
+	nav.navbar.navbar-default(role="navigation", ng-control)
+		.container-fluid
+			.navbar-header
+				button.navbar-toggle(type="button", ng-click="isCollapsed = !isCollapsed")
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href="/#/home") Hi Cloud
+			.collapse.navbar-collapse(collapse="isCollapsed")
+				ul.nav.navbar-nav.navbar-right
+					li(ng-hide="header.auth.isAuthenticated()")
+						a(href="#/login") Login
+					li(ng-hide="header.auth.isAuthenticated()")
+						a(href="#/register") Register
+					li(ng-show="header.auth.isAuthenticated()")
+						p.navbar-text
+							| Hello,
+							//- strong {{user().email}}
+					li(ng-show="auth.isAuthenticated()")
+						a(href="#", ng-click="logout()") Logout
