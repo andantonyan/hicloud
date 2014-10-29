@@ -7,9 +7,12 @@ var app = angular.module('hiCloud', [
 
 //Controllers
 app.controller('MainCtrl', MainController);
+app.controller('HomeCtrl', HomeController);
 
 //Services
-app.service('testService', TestService);
+app.factory('localService', LocalServiceFactory);
+app.factory('auth', AuthFactory);
+app.factory('currentUser', CurrentUserFactory);
 
 //Directives
 
@@ -17,8 +20,24 @@ app.service('testService', TestService);
 
 //Values
 
-//Interceptor
+//Interceptors
+app.factory('authInterceptor', AuthInterceptor);
+app.config(function($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+});
+
+//Constants
+app.constant('accessLevels', AccessLevelsConstant);
+
 
 app.config(function($stateProvider, $urlRouterProvider) {
-    
+	$stateProvider
+		.state('home', {
+			url: '/home',
+			templateUrl: '/build/views/home.html',
+			controller: 'HomeCtrl',
+			controllerAs: 'home'
+		});
+
+	$urlRouterProvider.otherwise('/home');
 });
