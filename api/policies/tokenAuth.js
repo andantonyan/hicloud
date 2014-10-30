@@ -7,11 +7,11 @@ module.exports = function(req, res, next) {
       var scheme = parts[0],
         credentials = parts[1];
 
-      if (/^Bearer$/i.test(scheme)) {
+      if (/^HiToken$/i.test(scheme)) {
         token = credentials;
       }
     } else {
-      return res.json(401, {err: 'Format is Authorization: Bearer [token]'});
+      return res.json(401, {err: 'Format is Authorization: HiToken [token]'});
     }
   } else if (req.param('token')) {
     token = req.param('token');

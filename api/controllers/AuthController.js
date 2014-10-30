@@ -42,6 +42,7 @@ module.exports = {
 
     User.create({email: req.body.email, password: req.body.password}).exec(function(err, user) {
       if (err) {
+        //TODO Write our error system (see eventconsort :))
         res.json(err.status, {err: err});
         return;
       }
