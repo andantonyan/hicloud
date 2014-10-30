@@ -1,6 +1,6 @@
 class HomeController {
-	constructor($scope) {
-		this.scope = $scope;
+	constructor() {
+		
 	}
 	init() {
 		

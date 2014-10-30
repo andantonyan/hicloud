@@ -14,7 +14,6 @@ app.controller('LoginCtrl', LoginController);
 //Services
 app.factory('localService', LocalServiceFactory);
 app.factory('auth', AuthFactory);
-app.factory('currentUser', CurrentUserFactory);
 
 //Directives
 
@@ -29,7 +28,6 @@ app.config(function($httpProvider) {
 });
 
 //Constants
-app.constant('accessLevels', AccessLevelsConstant);
 
 
 app.config(function($stateProvider, $urlRouterProvider) {

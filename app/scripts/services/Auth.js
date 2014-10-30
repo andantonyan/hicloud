@@ -1,17 +1,9 @@
 class Auth {
 
-    constructor($http, localService, accessLevels) {
-        this.http = $http;
+    constructor($q, $sails, localService) {
+        this.sails = $sails;
         this.localService = localService;
-        this.accessLevels = accessLevels;
-    }
-
-    authorize(access) {
-        if (access === accessLevels.user) {
-            return this.isAuthenticated();
-        } else {
-            return true;
-        }
+        this.q = $q;
     }
 
     isAuthenticated() {
@@ -19,11 +11,19 @@ class Auth {
     }
 
     login(credentials) {
-        var login = this.http.post('/auth/authenticate', credentials);
-            login.success(function(result) {
-                this.localService.set('auth_token', JSON.stringify(result));
+        var self = this,
+            deferred = this.q.defer();
+
+        this.sails.post('/api/auth/authenticate', credentials)
+            .success(function (result) {
+                self.localService.set('auth_token', JSON.stringify(result));
+                deferred.resolve({success: true});
+            })
+            .error(function(error) {
+                deferred.reject(new Error('error when trying login into system' + error));
             });
-        return login;
+        return deferred.promise;
+
     }
 
     logout() {
@@ -31,15 +31,21 @@ class Auth {
     }
 
     register(formData) {
-        this.localService.unset('auth_token');
-        var register = this.http.post('/auth/register', formData);
-        register.success(function(result) {
-            this.localService.set('auth_token', JSON.stringify(result));
-        });
-        return register;
+        var self = this,
+            deferred = this.q.defer();
+
+        this.sails.post('/api/auth/register', formData)
+            .success(function (result) {
+                self.localService.set('auth_token', JSON.stringify(result));
+                deferred.resolve({success: true});
+            })
+            .error(function(error) {
+                deferred.reject(new Error('error when trying register into system' + error));
+            });
+        return deferred.promise;
     }
 }
 
-function AuthFactory($http, localService, accessLevels) {
-    return new Auth($http, localService, accessLevels);
+function AuthFactory($q, $sails, localService) {
+    return new Auth($q, $sails, localService);
 }

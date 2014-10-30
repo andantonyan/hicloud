@@ -1,5 +1,4 @@
 header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
-	| {{header.auth.isAuthenticated()}}
 	nav.navbar.navbar-default(role="navigation", ng-control)
 		.container-fluid
 			.navbar-header
@@ -11,13 +10,13 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 				a.navbar-brand(href="/#/home") Hi Cloud
 			.collapse.navbar-collapse(collapse="isCollapsed")
 				ul.nav.navbar-nav.navbar-right
-					li(ng-hide="header.auth.isAuthenticated()")
+					li(ng-hide="isAuthenticated")
 						a(href="#/login") Login
-					li(ng-hide="header.auth.isAuthenticated()")
+					li(ng-hide="isAuthenticated")
 						a(href="#/register") Register
-					li(ng-show="header.auth.isAuthenticated()")
+					li(ng-show="isAuthenticated")
 						p.navbar-text
-							| Hello,
-							//- strong {{user().email}}
-					li(ng-show="auth.isAuthenticated()")
-						a(href="#", ng-click="logout()") Logout
+							| Hi
+							//- strong {{user.email}}
+					li(ng-show="isAuthenticated()")
+						a(href="/#/home", ng-click="header.logout()") Logout

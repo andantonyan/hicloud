@@ -1,9 +1,13 @@
 class LoginController {
-	constructor($scope) {
+	constructor($state, auth) {
 		
 	}
 
 	init() {
+		
+	}
+
+	login() {
 		
 	}
 
