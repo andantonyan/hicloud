@@ -1,0 +1,18 @@
+.main-content(ng-init="login.init()")
+	div(ng-include="'/build/views/includes/header.html'")
+	.col-lg-5.col-centered
+		.alert.alert-warning(role="alert", ng-show="formError") {{formError}}
+		form.form-signin(name="loginForm", novalidate="")
+			.control-group
+				label Email
+				input.form-control(type="email", placeholder="email", name="email", ng-model="user.email", required="")
+			.control-group
+				br
+				label Password
+				input.form-control(type="password", placeholder="password", name="password", ng-model="user.password", required="")
+			.control-group
+				br
+				input.btn.btn-lg.btn-primary.btn-block(type="submit", ng-click="login.login(loginForm.$valid)", value="Login")
+
+	div(ng-include="'/build/views/includes/footer.html'")
+

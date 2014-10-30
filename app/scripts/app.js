@@ -10,6 +10,7 @@ app.controller('MainCtrl', MainController);
 app.controller('HomeCtrl', HomeController);
 app.controller('HeaderCtrl', HeaderController);
 app.controller('LoginCtrl', LoginController);
+app.controller('RegisterCtrl', RegisterController);
 
 //Services
 app.factory('localService', LocalServiceFactory);
@@ -40,9 +41,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('login', {
 			url: '/login',
-			templateUrl: '/build/views/user/login.html',
+			templateUrl: '/build/views/auth/login.html',
 			controller: 'LoginCtrl',
 			controllerAs: 'login'
+		})
+		.state('registr', {
+			url: '/register',
+			templateUrl: '/build/views/auth/register.html',
+			controller: 'RegisterCtrl',
+			controllerAs: 'register'
 		});
 
 	$urlRouterProvider.otherwise('/home');

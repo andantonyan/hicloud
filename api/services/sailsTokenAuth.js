@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 module.exports.issueToken = function(payload) {
   return jwt.sign(
           payload, // This is the payload we want to put inside the token
-          sails.session.secret // Secret string which will be used to sign the token
+          sails.config.session.secret // Secret string which will be used to sign the token
         );
 };
 
@@ -12,7 +12,7 @@ module.exports.issueToken = function(payload) {
 module.exports.verifyToken = function(token, verified) {
   return jwt.verify(
             token, // The token to be verified
-            sails.session.secret, // The secret we used to sign it.
+            sails.config.session.secret, // The secret we used to sign it.
             {}, // Options, none in this case
             verified // The callback to be call when the verification is done.
          );

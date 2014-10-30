@@ -7,7 +7,7 @@ class LocalService {
         return localStorage.getItem(key);
     }
 
-    set(key) {
+    set(key, val) {
         return localStorage.setItem(key, val);
     }
 

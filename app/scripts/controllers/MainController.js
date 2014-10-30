@@ -1,16 +1,14 @@
 class MainController {
 
-	constructor(auth, localService, $scope) {
+	constructor(auth, $scope) {
 		this.auth = auth;
-		this.localService = localService;
 		this.scope = $scope; 
 
-		this.scope.isAuthenticated = this.auth.isAuthenticated() || false;
-		this.scope.user = this.localService.get('auth_token') ? angular.fromJson(this.ocalService.get('auth_token')).user : {};
 	}
 
 	init() {
-
+		this.scope.isAuthenticated = this.auth.isAuthenticated();
+		this.scope.user = this.auth.getUser();
 	}
   
 }

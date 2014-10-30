@@ -16,7 +16,7 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 						a(href="#/register") Register
 					li(ng-show="isAuthenticated")
 						p.navbar-text
-							| Hi
-							//- strong {{user.email}}
-					li(ng-show="isAuthenticated()")
-						a(href="/#/home", ng-click="header.logout()") Logout
+							| Hi 
+							strong {{user.email}}
+					li(ng-show="isAuthenticated")
+						a(href="/#", ng-click="header.logout()") Logout

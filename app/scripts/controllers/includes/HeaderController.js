@@ -1,16 +1,19 @@
 class HeaderController {
-	constructor($scope, auth) {
+	constructor($scope, auth, $route) {
 		this.scope = $scope;
 		this.auth = auth;
+		this.route = $route;
 
-		this.logout = this.auth.logout;
-				
 		this.scope.isAuthenticated = this.scope.$parent.isAuthenticated;
 		this.scope.isCollapsed = true;
 	}
 
 	init() {
 		
+	}
+
+	logout() {
+		this.auth.logout();
 	}
 
 }

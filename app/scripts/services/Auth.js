@@ -7,7 +7,11 @@ class Auth {
     }
 
     isAuthenticated() {
-        return this.localService.get('auth_token');
+        return this.localService.get('auth_token') ? true : false;
+    }
+
+    getUser() {
+        return this.localService.get('auth_token') ? angular.fromJson(this.localService.get('auth_token')).user : {};
     }
 
     login(credentials) {
@@ -16,8 +20,11 @@ class Auth {
 
         this.sails.post('/api/auth/authenticate', credentials)
             .success(function (result) {
+                if (result.err) {
+                    return deferred.reject(new Error('error when trying login into system, ' + JSON.stringify(result.err)));
+                }
                 self.localService.set('auth_token', JSON.stringify(result));
-                deferred.resolve({success: true});
+                deferred.resolve(result);
             })
             .error(function(error) {
                 deferred.reject(new Error('error when trying login into system' + error));
@@ -36,6 +43,9 @@ class Auth {
 
         this.sails.post('/api/auth/register', formData)
             .success(function (result) {
+                if (result.err) {
+                    return deferred.reject(new Error('error when trying register into system, ' + JSON.stringify(result.err)));
+                }
                 self.localService.set('auth_token', JSON.stringify(result));
                 deferred.resolve({success: true});
             })
