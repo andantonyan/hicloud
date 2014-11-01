@@ -14,7 +14,6 @@ class AppService {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying create application, ' + JSON.stringify(result.err)));
                 }
-                self.localService.set('auth_token', JSON.stringify(result));
                 deferred.resolve(result);
             })
             .error(function(error) {
@@ -24,6 +23,6 @@ class AppService {
     }
 }
 
-function AppServiceFactory($q, $sails, localService) {
-    return new Auth($q, $sails, localService);
+function AppServiceFactory($q, $sails) {
+    return new AppService($q, $sails);
 }

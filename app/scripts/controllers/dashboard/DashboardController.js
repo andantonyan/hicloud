@@ -20,7 +20,7 @@ class DashboardController {
 
 	    modalInstance.result
 		    .then((result) => {
-		    	console.log(result);
+		    	console.log('result from backend', result);
 		    })
 	}
 

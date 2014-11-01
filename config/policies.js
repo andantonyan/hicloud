@@ -58,5 +58,9 @@ module.exports.policies = {
     'populate': ['tokenAuth', 'ownAssociations'],
     'remove': ['tokenAuth', 'ownAssociations'],
     '*': false
-  } 
+  },
+
+  'AppController': {
+    'create': ['tokenAuth']
+  }
 };
