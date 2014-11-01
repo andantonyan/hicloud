@@ -47,7 +47,7 @@ class Auth {
                     return deferred.reject(new Error('error when trying register into system, ' + JSON.stringify(result.err)));
                 }
                 self.localService.set('auth_token', JSON.stringify(result));
-                deferred.resolve({success: true});
+                deferred.resolve(result);
             })
             .error(function(error) {
                 deferred.reject(new Error('error when trying register into system' + error));

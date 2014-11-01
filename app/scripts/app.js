@@ -12,9 +12,11 @@ app.controller('HeaderCtrl', HeaderController);
 app.controller('LoginCtrl', LoginController);
 app.controller('RegisterCtrl', RegisterController);
 app.controller('DashboardCtrl', DashboardController);
+app.controller('CreateAppCtrl', CreateAppController);
 
 //Services
 app.factory('localService', LocalServiceFactory);
+app.factory('appService', AppServiceFactory);
 app.factory('auth', AuthFactory);
 
 //Directives
