@@ -11,6 +11,7 @@ app.controller('HomeCtrl', HomeController);
 app.controller('HeaderCtrl', HeaderController);
 app.controller('LoginCtrl', LoginController);
 app.controller('RegisterCtrl', RegisterController);
+app.controller('DashboardCtrl', DashboardController);
 
 //Services
 app.factory('localService', LocalServiceFactory);
@@ -50,6 +51,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: '/build/views/auth/register.html',
 			controller: 'RegisterCtrl',
 			controllerAs: 'register'
+		})
+		.state('dashboard', {
+			url: '/dashboard',
+			templateUrl: '/build/views/dashboard/index.html',
+			controller: 'DashboardCtrl',
+			controllerAs: 'dashboard'
 		});
 
 	$urlRouterProvider.otherwise('/home');

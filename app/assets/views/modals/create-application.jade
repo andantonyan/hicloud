@@ -1,0 +1,15 @@
+.dashboard-content.container-fluid
+	.row-fluid
+		.col-md-1
+		.col-md-10.text-center
+			form.form-signin(name="createAppForm", novalidate="")
+				.control-group
+					input.form-control(type="text", placeholder="Application Name", name="name", ng-model="app.name", required="")
+				.control-group
+					br
+					textarea.form-control(placeholder="Application Description", name="description", ng-model="app.description", required="")
+				.control-group
+					br
+					input.btn.btn-lg.btn-primary.btn-block(type="submit", ng-click="login.login(loginForm.$valid)", value="Create")
+		.col-md-1
+

@@ -1,0 +1,11 @@
+.main-content(ng-init="dashboard.init()")
+	div(ng-include="'/build/views/includes/header.html'")
+	.dashboard-content.container-fluid
+		.row-fluid
+			.col-md-2
+			.col-md-8.text-center
+				.btn-group
+					a.btn.btn-sm.btn-success(ng-click="dashboard.myAplications()") My Applications
+					a.btn.btn-sm.btn-success(ng-click="dashboard.createApplication()") Create Application
+			.col-md-2
+	div(ng-include="'/build/views/includes/footer.html'")
