@@ -1,6 +1,6 @@
 class MainController {
 
-	constructor(auth, $scope) {
+	constructor(auth, $scope, $state, $modal) {
 		this.auth = auth;
 		this.scope = $scope; 
 	}
