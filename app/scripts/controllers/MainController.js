@@ -3,7 +3,6 @@ class MainController {
 	constructor(auth, $scope) {
 		this.auth = auth;
 		this.scope = $scope; 
-
 	}
 
 	init() {

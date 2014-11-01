@@ -1,11 +1,15 @@
-class DashboardController {
-	constructor($scope, $state, $modal) {
+//TODO: find out why auth has to be first parameter
+//TODO: remove MainController extend workaround - $scope is different
+class DashboardController extends MainController {
+	constructor(auth, $scope, $state, $modal) {
+		super(auth, $scope);
 		this.scope = $scope;
 		this.state = $state;
 		this.modal = $modal;
 	}
 
 	init() {
+		super.init();
 		if(!this.scope.isAuthenticated) {
 			this.state.go('home');
 		}
