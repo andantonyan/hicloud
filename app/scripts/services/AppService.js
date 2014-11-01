@@ -1,7 +1,7 @@
 class AppService {
 
-    constructor($q, $sails) {
-        this.sails = $sails;
+    constructor($q, $sailsSocket) {
+        this.sailsSocket = $sailsSocket;
         this.q = $q;
     }
    
@@ -9,7 +9,7 @@ class AppService {
         var self = this,
             deferred = this.q.defer();
 
-        this.sails.post('/api/app/create', formData)
+        this.sailsSocket.post('/api/app/create', formData)
             .success(function (result) {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying create application, ' + JSON.stringify(result.err)));
@@ -23,6 +23,6 @@ class AppService {
     }
 }
 
-function AppServiceFactory($q, $sails) {
-    return new AppService($q, $sails);
+function AppServiceFactory($q, $sailsSocket) {
+    return new AppService($q, $sailsSocket);
 }

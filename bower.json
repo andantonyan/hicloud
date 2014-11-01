@@ -16,7 +16,8 @@
     "angular-route": "~1.3.0",
     "bootstrap": "~3.2.0",
     "angular-mocks": "~1.3.0",
-    "angular-sails": "~1.0.4",
-    "traceur": "~0.0.72"
+    "traceur": "~0.0.72",
+    "sails.io.js": "~0.10.3",
+    "angularSails": "~0.10.0-pre"
   }
 }

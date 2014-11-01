@@ -1,7 +1,7 @@
 class Auth {
 
-    constructor($q, $sails, localService) {
-        this.sails = $sails;
+    constructor($q, $sailsSocket, localService) {
+        this.sailsSocket = $sailsSocket;
         this.localService = localService;
         this.q = $q;
     }
@@ -18,7 +18,7 @@ class Auth {
         var self = this,
             deferred = this.q.defer();
 
-        this.sails.post('/api/auth/authenticate', credentials)
+        this.sailsSocket.post('/api/auth/authenticate', credentials)
             .success(function (result) {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying login into system, ' + JSON.stringify(result.err)));
@@ -41,7 +41,7 @@ class Auth {
         var self = this,
             deferred = this.q.defer();
 
-        this.sails.post('/api/auth/register', formData)
+        this.sailsSocket.post('/api/auth/register', formData)
             .success(function (result) {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying register into system, ' + JSON.stringify(result.err)));
@@ -56,6 +56,6 @@ class Auth {
     }
 }
 
-function AuthFactory($q, $sails, localService) {
-    return new Auth($q, $sails, localService);
+function AuthFactory($q, $sailsSocket, localService) {
+    return new Auth($q, $sailsSocket, localService);
 }

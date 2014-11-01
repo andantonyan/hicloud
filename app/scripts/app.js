@@ -2,7 +2,7 @@ var app = angular.module('hiCloud', [
     'ui.bootstrap',
     'ngRoute',
     'ui.router',
-    'ngSails'
+    'sails.io'
 ]);
 
 //Controllers
@@ -27,14 +27,13 @@ app.factory('auth', AuthFactory);
 
 //Interceptors
 app.factory('authInterceptor', AuthInterceptor);
-app.config(function($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-});
 
 //Constants
 
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $sailsSocketProvider) {
+	$httpProvider.interceptors.push('authInterceptor');
+    $sailsSocketProvider.interceptors.push('authInterceptor');
 
-app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('home', {
 			url: '/home',
