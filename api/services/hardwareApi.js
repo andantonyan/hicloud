@@ -25,7 +25,7 @@ hwApi.user.getSshKeys = function(userId) {
     );
 };
 
-hwApi.user.setSshKeys = function(userId, sshKey) {
+hwApi.user.setSshKey = function(userId, sshKey) {
     return execCommand(
         'ssh-keys-set',
         'set ssh keys',
