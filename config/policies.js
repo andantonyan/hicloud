@@ -52,11 +52,11 @@ module.exports.policies = {
   '*': true,
 
   'UserController': {
-    'add': ['tokenAuth', 'ownAssociations'],
+    'add': ['tokenAuth'],
     'create': true,
-    'findOne': ['tokenAuth', 'ownUser'],
-    'populate': ['tokenAuth', 'ownAssociations'],
-    'remove': ['tokenAuth', 'ownAssociations'],
+    'findOne': ['tokenAuth'],
+    'populate': ['tokenAuth'],
+    'remove': ['tokenAuth'],
     '*': false
   },
 

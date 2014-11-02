@@ -1,3 +1,4 @@
+//TODO: find way get token from headers
 module.exports = function(req, res, next) {
   var token;
 

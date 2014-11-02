@@ -7,7 +7,10 @@
 
 module.exports = {
 	create: function(req, res, next) {
-		res.json(req.body)
+		//TODO: Add express validators
+		console.log('userId', req.token.sid);
+		console.log('body', req.body);
+		res.json({status: true})
 	}
 };
 

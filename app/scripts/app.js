@@ -27,12 +27,13 @@ app.factory('auth', AuthFactory);
 
 //Interceptors
 app.factory('authInterceptor', AuthInterceptor);
+app.factory('authInterceptorSocket', AuthInterceptorSocket);
 
 //Constants
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $sailsSocketProvider) {
 	$httpProvider.interceptors.push('authInterceptor');
-    $sailsSocketProvider.interceptors.push('authInterceptor');
+    $sailsSocketProvider.interceptors.push('authInterceptorSocket');
 
 	$stateProvider
 		.state('home', {
