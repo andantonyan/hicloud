@@ -32,7 +32,7 @@ class AccountSettingsController {
 
 		this.userService.addSshKey(this.scope.sshKey)
 			.then((result) => {
-				self.scope.settings.ssh.keys = result;
+				self.scope.settings.ssh.keys.push(result);
 				delete self.scope.sshKey;
 				delete this.scope.sshKeyFormError;
 			})

@@ -1,11 +1,10 @@
 .dashboard-content.container-fluid(ng-init="modal.init()")
 	.row-fluid
-        | {{settings | json}}
 		.col-md-1
 		.col-md-10
 			hr
 			h5 SSH keys
-			ul.list-group(ng-show="settings.keys.length")
+			ul.list-group(ng-show="settings.ssh.keys.length")
 				li.list-group-item(ng-repeat="key in settings.ssh.keys")
 					| {{key.name}} - {{key.value | limitTo: 10 }}...
 			button.btn.btn-mini.clearfix(ng-click="modal.addkeyForm()") Add
