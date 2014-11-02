@@ -7,7 +7,7 @@
 			ul.list-group(ng-show="settings.keys.length")
 				li.list-group-item(ng-repeat="key in settings.ssh.keys")
 					| {{key.name}} - {{key.value | limitTo: 10 }}...
-			a(href="javascript:void(0)", ng-click="modal.addkeyForm()") Add
+			button.btn.btn-mini.clearfix(ng-click="modal.addkeyForm()") Add
 			.add-new-ssh-key(ng-show="sshKey")
 				.alert.alert-warning(role="alert", ng-show="sshKeyFormError") {{sshKeyFormError}}
 				form.form-signin(name="addSshKeyForm", novalidate="")
@@ -21,6 +21,6 @@
 						.btn-group
 							input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.cancelAddKey()", value="Cancel")
 							input.btn.btn-sm.btn-success(type="submit", ng-click="modal.addSshKey(addSshKeyForm.$valid)", value="Add SSH key")
-			.btn.btn-sm.clearfix.pull-right(ng-click="modal.close()") Close
+			button.btn.btn-mini.clearfix.pull-right(ng-click="modal.close()") Close
 		.col-md-1
 
