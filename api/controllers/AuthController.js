@@ -47,7 +47,10 @@ module.exports = {
         return;
       }
       if (user) {
-        res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});
+        q.when(hardwareApi.user.create(user.id))
+         .then(function(result) {
+           res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});
+         }).catch(console.log);
       }
     });
   }
