@@ -11,7 +11,7 @@ class AccountSettingsController {
 
 		this.userService.settings()
 			.then((settings) => {
-				self.scope.settings = settings;
+				self.scope.settings = settings || {};
 				self.scope.settings.ssh = self.scope.settings.ssh || {keys : []};
 			});
 	}
@@ -34,7 +34,7 @@ class AccountSettingsController {
 
 		this.userService.addSshKey(this.scope.sshKey)
 			.then((result) => {
-				self.settings.ssh.keys
+				self.scope.settings.ssh.keys
 			})
 			.catch((err) => {
 				//TODO: broadcast global error
