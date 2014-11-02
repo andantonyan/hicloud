@@ -11,9 +11,9 @@ module.exports = {
     },
     settings: function(req, res, next) {
         return q.when(hardwareApi.user.getSshKeys(req.token.sid))
-                .then(function(data) {
+                .then(function(result) {
                     res.json({
-                        ssh: { keys: data }
+                        ssh: { keys: result.data.keys }
                     });
                 }).catch(next);
     },

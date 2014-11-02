@@ -8,11 +8,9 @@ class AccountSettingsController {
 
 	init() {
 		var self = this;
-
 		this.userService.settings()
 			.then((settings) => {
-				self.scope.settings = settings || {};
-				self.scope.settings.ssh = self.scope.settings.ssh || {keys : []};
+				self.scope.settings = settings;
 			});
 	}
 
@@ -34,7 +32,7 @@ class AccountSettingsController {
 
 		this.userService.addSshKey(this.scope.sshKey)
 			.then((result) => {
-				self.scope.settings.ssh.keys.push(result);
+				self.scope.settings.ssh.keys = result;
 				delete self.scope.sshKey;
 				delete this.scope.sshKeyFormError;
 			})
