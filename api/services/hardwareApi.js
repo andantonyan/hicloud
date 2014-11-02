@@ -22,7 +22,7 @@ var execCommand = function(command, successMsg, options) {
         args = args.concat(options);
     }
     exec(args, function(err, out, code) {
-        if (0 !== code) {
+        if ( 0 !== code ) {
             return deferred.reject({
                 status: 1,
                 message: err.syscall + ' ' + err.errno
