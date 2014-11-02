@@ -4,19 +4,23 @@
 		.col-md-10
 			hr
 			h5 SSH keys
-			a(href="javascript:void(0)", ng-click="addkeyForm") Add
-			//- h4 Add Your ssh keys
-			//- .alert.alert-warning(role="alert", ng-show="formError") {{formError}}
-			//- form.form-signin(name="createAppForm", novalidate="")
-			//- 	.control-group
-			//- 		input.form-control(type="text", placeholder="Name", name="name", ng-model="app.name", required)
-			//- 	.control-group
-			//- 		br
-			//- 		textarea.form-control(placeholder="Key", name="description", ng-model="app.description", required)
-			//- 	.control-group
-			//- 		br
-			//- 		.btn-group
-			//- 			input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.close()", value="Cancel")
-			//- 			input.btn.btn-sm.btn-success(type="submit", ng-click="modal.done(createAppForm.$valid)", value="Create Application")
+			ul.list-group(ng-show="settings.keys.length")
+				li.list-group-item(ng-repeat="key in settings.ssh.keys")
+					| {{key.name}} - {{key.value | limitTo: 10 }}...
+			button.btn.btn-mini.clearfix(ng-click="modal.addkeyForm()") Add
+			.add-new-ssh-key(ng-show="sshKey")
+				.alert.alert-warning(role="alert", ng-show="sshKeyFormError") {{sshKeyFormError}}
+				form.form-signin(name="addSshKeyForm", novalidate="")
+					.control-group
+						input.form-control(type="text", placeholder="Name", name="name", ng-model="sshKey.name", required)
+					.control-group
+						br
+						textarea.form-control(placeholder="Key", name="key", ng-model="sshKey.value", required)
+					.control-group
+						br
+						.btn-group
+							input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.cancelAddKey()", value="Cancel")
+							input.btn.btn-sm.btn-success(type="submit", ng-click="modal.addSshKey(addSshKeyForm.$valid)", value="Add SSH key")
+			button.btn.btn-mini.clearfix.pull-right(ng-click="modal.close()") Close
 		.col-md-1
 
