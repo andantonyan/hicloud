@@ -4,7 +4,8 @@ var q = require('q')
   , cfg = sails.config.api;
 
 var hwApi = {
-    app: {}
+    app: {},
+    user: {}
 };
 
 hwApi.app.create = function(userId, appName) {
@@ -13,6 +14,7 @@ hwApi.app.create = function(userId, appName) {
     return deferred.promise;
 };
 
+// TODO: remove deferred param
 var execCommand = function(deferred, successMsg, command, options) {
     var args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
     if ( _.isArray(options) ) {

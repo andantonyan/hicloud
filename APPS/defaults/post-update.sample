@@ -6,3 +6,5 @@
 # To enable this hook, rename this file to "post-update".
 
 exec git update-server-info
+
+../../../../api/bin/apps-node-restart.sh $PWD/..

@@ -18,6 +18,6 @@ if [ ! -f "$USERDIR/.ssh/authorized_keys" ]; then
 fi
 
 sudo su - "$USER" -c "cd $APPDIR && git --bare init"
-sudo su - "$USER" -c "cp $1/defaults/post-update.sample $APPDIR/.git/hooks/post-update"
+sudo su - "$USER" -c "cp $1/defaults/post-update.sample $APPDIR/hooks/post-update"
 
 exit 0
