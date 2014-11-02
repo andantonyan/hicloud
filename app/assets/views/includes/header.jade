@@ -15,10 +15,11 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 					li(ng-hide="isAuthenticated")
 						a(href="#/register") Register
 					li(ng-show="isAuthenticated")
-						p.navbar-text
-							//- | Hi, 
-							strong {{user.email}}
-					li(ng-show="isAuthenticated")
 						a(href="/#/dashboard") Dashboard
-					li(ng-show="isAuthenticated")
-						a(href="/#", ng-click="header.logout()") Logout
+					li.dropdown(ng-show="isAuthenticated")
+						a.dropdown-toggle(data-toggle="dropdown", href="#", aria-expanded="false")
+							| {{user.email}}
+							span.caret
+						ul.dropdown-menu(role="menu")
+							li
+								a(href="/#", ng-click="header.logout()") Logout

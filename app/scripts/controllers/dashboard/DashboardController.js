@@ -17,19 +17,34 @@ class DashboardController extends MainController {
 	}
 
 	createApplication() {
-	    var modalInstance = this.modal.open({
+		var modalInstance = this.modal.open({
 			templateUrl: '/build/views/modals/create-application.html',
 			controller: 'CreateAppCtrl',
 			controllerAs: 'modal'
-	    });
+		});
 
-	    modalInstance.result
-		    .then((result) => {
-		    	console.log('result from backend', result);
-		    })
+		modalInstance.result
+			.then((result) => {
+				//TODO: broadcast sussess
+				// console.log('result from backend', result);
+			})
 	}
 
-	myAplications() {
+	applications() {
 		console.log('My Applications')
+	}
+
+	accountSettings() {
+		var modalInstance = this.modal.open({
+			templateUrl: '/build/views/modals/account-settings.html',
+			controller: 'AccountSettingsCtrl',
+			controllerAs: 'modal'
+		});
+
+		modalInstance.result
+			.then((result) => {
+				//TODO: broadcast sussess
+				// console.log('result from backend', result);
+			})
 	}
 }

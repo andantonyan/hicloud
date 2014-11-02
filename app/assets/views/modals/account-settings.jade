@@ -1,0 +1,22 @@
+.dashboard-content.container-fluid(ng-init="modal.init()")
+	.row-fluid
+		.col-md-1
+		.col-md-10
+			hr
+			h5 SSH keys
+			a(href="javascript:void(0)", ng-click="addkeyForm") Add
+			//- h4 Add Your ssh keys
+			//- .alert.alert-warning(role="alert", ng-show="formError") {{formError}}
+			//- form.form-signin(name="createAppForm", novalidate="")
+			//- 	.control-group
+			//- 		input.form-control(type="text", placeholder="Name", name="name", ng-model="app.name", required)
+			//- 	.control-group
+			//- 		br
+			//- 		textarea.form-control(placeholder="Key", name="description", ng-model="app.description", required)
+			//- 	.control-group
+			//- 		br
+			//- 		.btn-group
+			//- 			input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.close()", value="Cancel")
+			//- 			input.btn.btn-sm.btn-success(type="submit", ng-click="modal.done(createAppForm.$valid)", value="Create Application")
+		.col-md-1
+

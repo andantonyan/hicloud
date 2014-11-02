@@ -13,6 +13,7 @@ app.controller('LoginCtrl', LoginController);
 app.controller('RegisterCtrl', RegisterController);
 app.controller('DashboardCtrl', DashboardController);
 app.controller('CreateAppCtrl', CreateAppController);
+app.controller('AccountSettingsCtrl', AccountSettingsController);
 
 //Services
 app.factory('localService', LocalServiceFactory);
