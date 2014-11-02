@@ -16,12 +16,20 @@ hwApi.app.create = function(userId, appName) {
     );
 };
 
-hwApi.user.keys = function(userId) {
+hwApi.user.getSshKeys = function(userId) {
     return execCommand(
         'ssh-keys-get',
-        'ssh keys',
+        'get ssh keys',
         [userId],
         'key'
+    );
+};
+
+hwApi.user.setSshKeys = function(userId, sshKey) {
+    return execCommand(
+        'ssh-keys-set',
+        'set ssh keys',
+        [userId, sshKey]
     );
 };
 
