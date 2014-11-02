@@ -52,7 +52,7 @@ class AccountSettingsController {
 	}
 
 	close() {
-		this.modalInstance.close(null);
+		this.modalInstance.close();
 	}
 
   

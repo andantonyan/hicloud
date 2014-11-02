@@ -30,7 +30,7 @@ class CreateAppController {
 	}
 
 	close() {
-		this.modalInstance.close(null);
+		this.modalInstance.close();
 	}
 
   
