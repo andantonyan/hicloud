@@ -1,7 +1,7 @@
 install:
 	@echo installing backend dependencies...
 	@npm install
-	@echo installing frontend dependencies
+	@echo installing frontend dependencies...
 	@bower install
 
 deps:
