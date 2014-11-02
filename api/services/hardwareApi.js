@@ -16,6 +16,14 @@ hwApi.app.create = function(userId, appName) {
     );
 };
 
+hwApi.user.create = function(userId) {
+    return execCommand(
+        'user-create',
+        'user has been created successfully',
+        [userId]
+    );
+};
+
 hwApi.user.getSshKeys = function(userId) {
     return execCommand(
         'ssh-keys-get',
@@ -34,7 +42,6 @@ hwApi.user.setSshKey = function(userId, sshKey) {
 };
 
 //TODO: move this to helpers
-//TODO: add data passing capability
 var execCommand = function(command, successMsg, options, type) {
     var deferred = q.defer();
     var args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
