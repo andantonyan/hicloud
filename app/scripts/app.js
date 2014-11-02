@@ -13,6 +13,7 @@ app.controller('LoginCtrl', LoginController);
 app.controller('RegisterCtrl', RegisterController);
 app.controller('DashboardCtrl', DashboardController);
 app.controller('CreateAppCtrl', CreateAppController);
+app.controller('ShowAppsCtrl', ShowAppsController);
 app.controller('AccountSettingsCtrl', AccountSettingsController);
 
 //Services
@@ -24,6 +25,13 @@ app.factory('auth', AuthFactory);
 //Directives
 
 //Filters
+app.filter('dots', function () {
+    return function(input, len) {
+        if (input) {
+            return input.substring(0, len - 1) + (input.length > len - 1 ? '...' : '');
+        }
+    }
+});
 
 //Values
 

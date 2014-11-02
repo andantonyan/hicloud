@@ -30,8 +30,12 @@ class DashboardController extends MainController {
 			})
 	}
 
-	applications() {
-		console.log('My Applications')
+    myApplications() {
+		var modalInstance = this.modal.open({
+			templateUrl: '/build/views/modals/my-applications.html',
+			controller: 'ShowAppsCtrl',
+			controllerAs: 'modal'
+		});
 	}
 
 	accountSettings() {
