@@ -34,7 +34,9 @@ class AccountSettingsController {
 
 		this.userService.addSshKey(this.scope.sshKey)
 			.then((result) => {
-				self.scope.settings.ssh.keys
+				self.scope.settings.ssh.keys.push(result);
+				delete self.scope.sshKey;
+				delete this.scope.sshKeyFormError;
 			})
 			.catch((err) => {
 				//TODO: broadcast global error
