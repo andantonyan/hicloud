@@ -16,9 +16,8 @@ hwApi.app.create = function(userId, appName) {
 //TODO: move this to helpers
 //TODO: add data passing capability
 var execCommand = function(command, successMsg, options) {
-    var deferred = q.defer(),
-        args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
-
+    var deferred = q.defer();
+    var args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
     if ( _.isArray(options) ) {
         args = args.concat(options);
     }
