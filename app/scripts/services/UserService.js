@@ -17,7 +17,7 @@ class UserService {
                 deferred.resolve(result);
             })
             .error(function(error) {
-                deferred.reject(new Error('error when trying get user settings, ' + error));
+                deferred.reject(new Error('error when trying get user settings, ' + JSON.stringify(error)));
             });
         return deferred.promise;
     }
@@ -34,7 +34,24 @@ class UserService {
                 deferred.resolve(result);
             })
             .error(function(error) {
-                deferred.reject(new Error('error when trying to set ssh key, ' + error));
+                deferred.reject(new Error('error when trying to set ssh key, ' + JSON.stringify(error)));
+            });
+        return deferred.promise;
+    }
+
+    removeSshKey(value) {
+        var self = this,
+            deferred = this.q.defer();
+            
+        this.sailsSocket.delete('/api/user/delete-ssh-key', {key: value})
+            .success(function (result) {
+                if (result.err) {
+                    return deferred.reject(new Error('error when trying to delete ssh key, ' + JSON.stringify(result.err)));
+                }
+                deferred.resolve(result);
+            })
+            .error(function(error) {
+                deferred.reject(new Error('error when trying to delete ssh key, ' + JSON.stringify(error)));
             });
         return deferred.promise;
     }
