@@ -44,8 +44,9 @@ var execCommand = function(command, successMsg, options, type) {
     exec(args, function(err, out, code) {
         if ( 0 !== code ) {
             return deferred.reject({
-                status: 1,
-                message: err.syscall + ' ' + err.errno
+                status: code || 1,
+                errno: out || err.errno,
+                message: (err.syscall && err.errno ? err.syscall + ' ' + err.errno : '')
             });
         }
         var data = {};
@@ -55,8 +56,13 @@ var execCommand = function(command, successMsg, options, type) {
                     data.keys = [];
                     var rows = out.split("\n");
                     _.forEach(rows, function(row) {
-                        var cols = row.split(" ");
-                        data.keys.push([ cols[2], cols[0] + ' ' + cols[1] ]);
+                        if ( row.trim() != '' ) {
+                            var cols = row.split(' ');
+                            data.keys.push({
+                                name: cols[2],
+                                value: cols[0] + ' ' + cols[1]
+                            });
+                        }
                     });
                     break;
                 default:

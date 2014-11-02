@@ -18,7 +18,7 @@ module.exports = {
 			.then(function (app) {
 				res.json(app);
 			})
-			.catch(console.log)
+			.catch(next)
 	}
 };
 

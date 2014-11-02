@@ -57,6 +57,8 @@ module.exports.policies = {
     'findOne': ['tokenAuth'],
     'populate': ['tokenAuth'],
     'remove': ['tokenAuth'],
+    'settings': ['tokenAuth'],
+    'add-ssh-key': ['tokenAuth'],
     '*': false
   },
 
