@@ -17,7 +17,7 @@ class AppService {
                 deferred.resolve(result);
             })
             .error(function(error) {
-                deferred.reject(new Error('error when trying create application' + error));
+                deferred.reject(new Error('error when trying create application, ' + error));
             });
         return deferred.promise;
     }

@@ -122,3 +122,7 @@ public/vendor
 
 #build directory
 public/build
+
+
+# third-party
+APPS/[0-9]*
