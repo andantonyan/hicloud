@@ -8,13 +8,16 @@ var hwApi = {
 };
 
 hwApi.app.create = function(userId, appName) {
-    var deferred = q.defer();
-    execCommand(deferred, 'app-create', 'application has been created successfully', [userId, appName]);
-    return deferred.promise;
+    return execCommand('app-create', 'application has been created successfully', [userId, appName]);
 };
 
-var execCommand = function(deferred, successMsg, command, options) {
-    var args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
+
+//TODO: move this to helpers
+//TODO: add data passing capability
+var execCommand = function(command, successMsg, options) {
+    var deferred = q.defer(),
+        args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
+
     if ( _.isArray(options) ) {
         args = args.concat(options);
     }
@@ -30,6 +33,7 @@ var execCommand = function(deferred, successMsg, command, options) {
             message: successMsg
         });
     });
+    return deferred.promise;
 };
 
 module.exports = hwApi;
