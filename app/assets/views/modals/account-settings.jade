@@ -4,10 +4,19 @@
 		.col-md-10
 			hr
 			h5 SSH keys
-			ul.list-group(ng-show="settings.ssh.keys.length")
-				li.list-group-item(ng-repeat="key in settings.ssh.keys")
-					| {{key.name}} - {{key.value | limitTo: 10 }}...
-			button.btn.btn-mini.clearfix(ng-click="modal.addkeyForm()") Add
+			table.table.table-striped.table-bordered.table-condensed
+				thead
+					tr
+						td(width="30%") Name
+						td(width="65%") Key
+						td(width="5%") 
+				tbody(ng-show="settings.ssh.keys.length")
+					tr(ng-repeat="key in settings.ssh.keys")
+						td {{key.name}}
+						td {{key.value | limitTo: 30 }}...
+						td
+							span.text-danger.glyphicon.glyphicon-remove(ng-click="modal.removeSshKey(key.value)")
+			button.btn.btn-mini.clearfix(ng-click="modal.addkeyForm()") Add new key
 			.add-new-ssh-key(ng-show="sshKey")
 				.alert.alert-warning(role="alert", ng-show="sshKeyFormError") {{sshKeyFormError}}
 				form.form-signin(name="addSshKeyForm", novalidate="")
@@ -20,7 +29,7 @@
 						br
 						.btn-group
 							input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.cancelAddKey()", value="Cancel")
-							input.btn.btn-sm.btn-success(type="submit", ng-click="modal.addSshKey(addSshKeyForm.$valid)", value="Add SSH key")
+							input.btn.btn-sm.btn-success(type="submit", ng-click="modal.addSshKey(addSshKeyForm.$valid)", value="Done")
 			button.btn.btn-mini.clearfix.pull-right(ng-click="modal.close()") Close
 		.col-md-1
 

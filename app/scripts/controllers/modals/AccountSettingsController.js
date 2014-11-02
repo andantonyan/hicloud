@@ -47,6 +47,10 @@ class AccountSettingsController {
 		delete this.scope.sshKey;
 	}
 
+	removeSshKey(key) {
+		console.log(key);
+	}
+
 	close() {
 		this.modalInstance.close(null);
 	}
