@@ -59,6 +59,7 @@ module.exports.policies = {
     'remove': ['tokenAuth'],
     'settings': ['tokenAuth'],
     'add-ssh-key': ['tokenAuth'],
+    'delete-ssh-key': ['tokenAuth'],
     'apps': ['tokenAuth'],
     '*': false
   },

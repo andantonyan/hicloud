@@ -41,6 +41,14 @@ hwApi.user.setSshKey = function(userId, sshKey) {
     );
 };
 
+hwApi.user.deleteSshKey = function(userId, sshKey) {
+    return execCommand(
+        'ssh-keys-rm',
+        'remove ssh keys',
+        [userId, sshKey]
+    );
+};
+
 //TODO: move this to helpers
 var execCommand = function(command, successMsg, options, type) {
     var deferred = q.defer();
@@ -52,7 +60,7 @@ var execCommand = function(command, successMsg, options, type) {
         if ( 0 !== code ) {
             return deferred.reject({
                 status: code || 1,
-                errno: out || err.errno,
+                errno: out.replace("\n", "") || err.errno,
                 message: (err.syscall && err.errno ? err.syscall + ' ' + err.errno : '')
             });
         }

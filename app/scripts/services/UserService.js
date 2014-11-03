@@ -42,9 +42,9 @@ class UserService {
     removeSshKey(value) {
         var self = this,
             deferred = this.q.defer();
-            
-        this.sailsSocket.delete('/api/user/delete-ssh-key', {key: value})
-            .success(function (result) {
+
+        this.sailsSocket.post('/api/user/delete-ssh-key', { key: value })
+            .success(function(result) {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying to delete ssh key, ' + JSON.stringify(result.err)));
                 }

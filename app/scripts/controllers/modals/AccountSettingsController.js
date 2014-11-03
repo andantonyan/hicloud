@@ -48,13 +48,17 @@ class AccountSettingsController {
 	}
 
 	removeSshKey(key) {
+        var self = this;
 		this.userService.removeSshKey(key)
 			.then((result) => {
-				console.log(result);
-			})
-			.catch((err) => {
-				console.log(err);
-			})
+                if ( typeof result !== 'object' ) return;
+    console.log(result)
+                self.scope.settings.ssh.keys.forEach(function(key, i) {
+                    if ( key.name == result.name && key.value == result.value ) {
+                        self.scope.settings.ssh.keys.splice(i, 1);
+                    }
+                });
+			}).catch(console.log)
 	}
 
 	close() {

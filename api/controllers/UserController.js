@@ -24,6 +24,15 @@ module.exports = {
                     res.json(req.body);
                 }).catch(next);
     },
+    'delete-ssh-key': function(req, res, next) {
+        var keySpl = req.body.key.split(' ');
+        var key = keySpl.pop();
+        var value = keySpl.join(' ');
+        return q.when(hardwareApi.user.deleteSshKey(req.token.sid, value + ' ' + key))
+                .then(function(data) {
+                    res.json({ name: key, value: value });
+                }).catch(next);
+    },
     apps: function(req, res, next) {
         return q.when(App.find({ userId: req.token.sid }))
                 .then(function(apps) {
