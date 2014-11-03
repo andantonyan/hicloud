@@ -52,7 +52,6 @@ class AccountSettingsController {
 		this.userService.removeSshKey(key)
 			.then((result) => {
                 if ( typeof result !== 'object' ) return;
-    console.log(result)
                 self.scope.settings.ssh.keys.forEach(function(key, i) {
                     if ( key.name == result.name && key.value == result.value ) {
                         self.scope.settings.ssh.keys.splice(i, 1);
