@@ -2,7 +2,8 @@ var app = angular.module('hiCloud', [
     'ui.bootstrap',
     'ngRoute',
     'ui.router',
-    'sails.io'
+    'sails.io',
+    'ngLodash'
 ]);
 
 //Controllers
