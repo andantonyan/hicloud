@@ -21,6 +21,7 @@ class AppService {
             });
         return deferred.promise;
     }
+
 }
 
 function AppServiceFactory($q, $sailsSocket) {

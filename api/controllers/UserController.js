@@ -23,5 +23,11 @@ module.exports = {
                 .then(function(data) {
                     res.json(req.body);
                 }).catch(next);
+    },
+    apps: function(req, res, next) {
+        return q.when(App.find({ userId: req.token.sid }))
+                .then(function(apps) {
+                    res.json(apps);
+                }).catch(next);
     }
 };
