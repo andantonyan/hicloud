@@ -1,13 +1,13 @@
 class MainController {
 
-	constructor(auth, $scope, $state, $modal) {
-		this.auth = auth;
+	constructor(authService, $scope, $state, $modal) {
+		this.authService = authService;
 		this.scope = $scope; 
 	}
 
 	init() {
-		this.scope.isAuthenticated = this.auth.isAuthenticated();
-		this.scope.user = this.auth.getUser();
+		this.scope.isAuthenticated = this.authService.isAuthenticated();
+		this.scope.user = this.authService.getUser();
 	}
   
 }

@@ -1,7 +1,7 @@
 class LoginController {
-	constructor($scope, $state, auth) {
+	constructor($scope, $state, authService) {
 		this.scope = $scope;
-		this.auth = auth;
+		this.authService = authService;
 		this.state = $state;
 	}
 
@@ -16,7 +16,7 @@ class LoginController {
 			this.scope.formError = 'Missing Credentials';
 			return;
 		}
-		this.auth.login(this.scope.user)
+		this.authService.login(this.scope.user)
 			.then((result) => {
 				self.state.go('home');
 			})

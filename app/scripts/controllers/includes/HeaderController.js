@@ -1,7 +1,7 @@
 class HeaderController {
-	constructor($scope, auth, $state) {
+	constructor($scope, authService, $state) {
 		this.scope = $scope;
-		this.auth = auth;
+		this.authService = authService;
 		this.state = $state;
 	}
 
@@ -11,7 +11,7 @@ class HeaderController {
 	}
 
 	logout() {
-		this.auth.logout();
+		this.authService.logout();
 	}
 
 }

@@ -1,9 +1,9 @@
-//TODO: find out why auth has to be first parameter
+//TODO: find out why authService has to be first parameter
 //TODO: remove MainController extend workaround - $scope is different
 //TODO: why traceur owerwrited child class constructor
 class DashboardController extends MainController {
-	constructor(auth, $scope, $state, $modal) {
-		super(auth, $scope);
+	constructor(authService, $scope, $state, $modal) {
+		super(authService, $scope);
 		this.scope = $scope;
 		this.state = $state;
 		this.modal = $modal;
