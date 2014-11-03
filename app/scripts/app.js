@@ -20,7 +20,7 @@ app.controller('AccountSettingsCtrl', AccountSettingsController);
 app.factory('localService', LocalServiceFactory);
 app.factory('appService', AppServiceFactory);
 app.factory('userService', UserServiceFactory);
-app.factory('auth', AuthFactory);
+app.factory('authService', AuthServiceFactory);
 
 //Directives
 

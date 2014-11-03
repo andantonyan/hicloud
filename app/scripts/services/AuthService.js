@@ -1,4 +1,4 @@
-class Auth {
+class AuthService {
 
     constructor($q, $sailsSocket, localService) {
         this.sailsSocket = $sailsSocket;
@@ -56,6 +56,6 @@ class Auth {
     }
 }
 
-function AuthFactory($q, $sailsSocket, localService) {
-    return new Auth($q, $sailsSocket, localService);
+function AuthServiceFactory($q, $sailsSocket, localService) {
+    return new AuthService($q, $sailsSocket, localService);
 }

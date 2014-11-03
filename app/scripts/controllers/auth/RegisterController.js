@@ -1,7 +1,7 @@
 class RegisterController {
-	constructor($state, auth, $scope) {
+	constructor($state, authService, $scope) {
 		this.state = $state;
-		this.auth = auth;
+		this.authService = authService;
 		this.scope = $scope;
 	}
 
@@ -16,7 +16,7 @@ class RegisterController {
 			this.scope.formError = 'Missing Credentials';
 			return;
 		}
-		this.auth.register(this.scope.user)
+		this.authService.register(this.scope.user)
 			.then((user) => {
 				self.state.go('home');
 			})
