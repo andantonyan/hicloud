@@ -48,7 +48,13 @@ class AccountSettingsController {
 	}
 
 	removeSshKey(key) {
-		console.log(key);
+		this.userService.removeSshKey(key)
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
 	}
 
 	close() {

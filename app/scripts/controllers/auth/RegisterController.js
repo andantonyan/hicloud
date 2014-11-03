@@ -21,7 +21,7 @@ class RegisterController {
 				self.state.go('home');
 			})
 			.catch((error)=> {
-				this.scope.formError = errror.toString();
+				this.scope.formError = error.toString();
 			});
 	}
 
