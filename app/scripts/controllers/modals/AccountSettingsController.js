@@ -16,10 +16,8 @@ class AccountSettingsController {
 
 	addkeyForm() {
 		delete this.scope.sshKeyFormError;
-		this.scope.sshKey = {
-			name: '',
-			value: ''
-		}
+        this.scope.showSshKeyField = true
+		this.scope.sshKey = ''
 	}
 
 	addSshKey(valid) {
@@ -32,9 +30,10 @@ class AccountSettingsController {
 
 		this.userService.addSshKey(this.scope.sshKey)
 			.then((result) => {
-				self.scope.settings.ssh.keys.push(result);
+				self.scope.settings.ssh.keys.push(result.key);
+				delete self.scope.showSshKeyField;
 				delete self.scope.sshKey;
-				delete this.scope.sshKeyFormError;
+				delete self.scope.sshKeyFormError;
 			})
 			.catch((err) => {
 				//TODO: broadcast global error
@@ -43,9 +42,10 @@ class AccountSettingsController {
 	}
 
 	cancelAddKey() {
-		delete this.scope.sshKeyFormError;
 		delete this.scope.sshKey;
-	}
+		delete this.scope.showSshKeyField;
+        delete this.scope.sshKeyFormError;
+    }
 
 	removeSshKey(key) {
         var self = this;
@@ -53,7 +53,7 @@ class AccountSettingsController {
 			.then((result) => {
                 if ( typeof result !== 'object' ) return;
                 self.scope.settings.ssh.keys.forEach(function(key, i) {
-                    if ( key.name == result.name && key.value == result.value ) {
+                    if ( key == result.key  ) {
                         self.scope.settings.ssh.keys.splice(i, 1);
                     }
                 });

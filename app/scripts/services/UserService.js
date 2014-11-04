@@ -22,11 +22,11 @@ class UserService {
         return deferred.promise;
     }
 
-    addSshKey(formData) {
+    addSshKey(key) {
         var self = this,
             deferred = this.q.defer();
             
-        this.sailsSocket.post('/api/user/add-ssh-key', formData)
+        this.sailsSocket.post('/api/user/add-ssh-key', { key: key })
             .success(function (result) {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying to set ssh key, ' + JSON.stringify(result.err)));
