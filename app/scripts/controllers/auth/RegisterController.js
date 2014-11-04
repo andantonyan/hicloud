@@ -13,12 +13,12 @@ class RegisterController {
 		var self = this;
 
 		if(!valid) {
-			this.scope.formError = 'Missing Credentials';
+			this.scope.formError = 'Please fill in all the required fields';
 			return;
 		}
 		this.authService.register(this.scope.user)
 			.then((user) => {
-				self.state.go('home');
+				self.state.go('dashboard');
 			})
 			.catch((error)=> {
 				this.scope.formError = error.toString();
