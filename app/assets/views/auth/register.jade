@@ -1,22 +1,26 @@
 .main-content(ng-init="register.init()")
-	div(ng-include="'/build/views/includes/header.html'")
-	.col-lg-5.col-centered
-		.alert.alert-warning(role="alert", ng-show="formError") {{formError}}
-		form.form-signin(novalidate='', name='registerForm')
-			.control-group
-				label Email
-				input.form-control(type='email', required='', ng-model='user.email', name='email', placeholder='email')
-			.control-group
-				br
-				label Password
-				input.form-control(type='password', required='', ng-model='user.password', name='password', placeholder='password')
-			.control-group
-				br
-				label Confirm Password
-				input.form-control(type='password', required='', ng-model='user.confirmPassword', name='confirmpassword', placeholder='confirm password')
-			.control-group
-				br
-				input.btn.btn-lg.btn-primary.btn-block(type='submit', value='Create Account', ng-click='register.register(registerForm.$valid)')
+    div(ng-include="'/build/views/includes/header.html'")
+    .col-lg-5.col-centered
+        .alert.alert-warning(role="alert", ng-show="formError") {{formError}}
+        form.form-signin(novalidate='', name='registerForm')
+            .control-group
+                label Username
+                input.form-control(type='text', required='', ng-model='user.uname', name='uname', placeholder='username')
+            .control-group
+                br
+                label Email
+                input.form-control(type='email', required='', ng-model='user.email', name='email', placeholder='email')
+            .control-group
+                br
+                label Password
+                input.form-control(type='password', required='', ng-model='user.password', name='password', placeholder='password')
+            .control-group
+                br
+                label Confirm Password
+                input.form-control(type='password', required='', ng-model='user.confirmPassword', name='confirmpassword', placeholder='confirm password')
+            .control-group
+                br
+                input.btn.btn-lg.btn-primary.btn-block(type='submit', value='Create Account', ng-click='register.register(registerForm.$valid)')
 
-	div(ng-include="'/build/views/includes/footer.html'")
+    div(ng-include="'/build/views/includes/footer.html'")
 

@@ -18,7 +18,7 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 						a(href="/#/dashboard") Dashboard
 					li.dropdown(ng-show="isAuthenticated")
 						a.dropdown-toggle(data-toggle="dropdown", href="#", aria-expanded="false")
-							| {{user.email}}
+							| {{user.uname}}
 							span.caret
 						ul.dropdown-menu(role="menu")
 							li

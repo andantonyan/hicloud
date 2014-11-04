@@ -20,14 +20,11 @@ class AuthService {
 
         this.sailsSocket.post('/api/auth/authenticate', credentials)
             .success(function (result) {
-                if (result.err) {
-                    return deferred.reject(new Error('error when trying login into system, ' + JSON.stringify(result.err)));
-                }
                 self.localService.set('auth_token', JSON.stringify(result));
                 deferred.resolve(result);
             })
-            .error(function(error) {
-                deferred.reject(new Error('error when trying login into system' + error));
+            .error(function(data) {
+                deferred.reject(new Error(data.err));
             });
         return deferred.promise;
 
