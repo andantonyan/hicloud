@@ -12,13 +12,12 @@ module.exports = {
 		req.body.userId = req.token.sid;
 
 		return q.when(hardwareApi.app.create(req.body.userId, req.body.name))
-			.then(function(data) {
-				return q.ninvoke(App, 'create', req.body);
-			})
-			.then(function (app) {
-				res.json(app);
-			})
-			.catch(next)
+                .then(function(data) {
+                    return q.ninvoke(App, 'create', req.body);
+                })
+                .then(function (app) {
+                    res.json(app);
+                }).catch(next)
 	}
 };
 

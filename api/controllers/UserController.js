@@ -25,7 +25,7 @@ module.exports = {
                 }).catch(next);
     },
     'delete-ssh-key': function(req, res, next) {
-        var key = req.body.key
+        var key = req.body.key;
         return q.when(hardwareApi.user.deleteSshKey(req.token.sid, key))
                 .then(function(data) {
                     res.json({ key: key });

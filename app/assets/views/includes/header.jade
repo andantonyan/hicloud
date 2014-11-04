@@ -11,9 +11,9 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 			.collapse.navbar-collapse(collapse="isCollapsed")
 				ul.nav.navbar-nav.navbar-right
 					li(ng-hide="isAuthenticated")
-						a(href="#/login") Login
+						a(href="/#/login") Login
 					li(ng-hide="isAuthenticated")
-						a(href="#/register") Register
+						a(href="/#/register") Register
 					li(ng-show="isAuthenticated")
 						a(href="/#/dashboard") Dashboard
 					li.dropdown(ng-show="isAuthenticated")

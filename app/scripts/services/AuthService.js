@@ -40,14 +40,11 @@ class AuthService {
 
         this.sailsSocket.post('/api/auth/register', formData)
             .success(function (result) {
-                if (result.err) {
-                    return deferred.reject(new Error('error when trying register into system, ' + JSON.stringify(result.err)));
-                }
                 self.localService.set('auth_token', JSON.stringify(result));
                 deferred.resolve(result);
             })
-            .error(function(error) {
-                deferred.reject(new Error('error when trying register into system' + error));
+            .error(function(data) {
+                deferred.reject(new Error(data.err));
             });
         return deferred.promise;
     }

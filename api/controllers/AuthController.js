@@ -7,6 +7,8 @@
 
 //TODO Write with Q
 
+var cfg = sails.config.auth;
+
 module.exports = {
 
   authenticate: function(req, res) {
@@ -45,6 +47,10 @@ module.exports = {
       return res.json(401, {err: 'Password doesn\'t match'});
     }
 
+    if ( -1 !== cfg.disallowedUsernames.indexOf(req.body.uname) ) {
+      return res.json(401, {err: 'This username is not allowed'});
+    }
+
     User.create({
         uname: req.body.uname,
         email: req.body.email,
@@ -52,8 +58,7 @@ module.exports = {
     }).exec(function(err, user) {
       if (err) {
         //TODO Write our error system (see eventconsort :))
-        res.json(err.status, {err: err});
-        return;
+        return res.json(err.status, {err: err});
       }
       if (user) {
         q.when(hardwareApi.user.create(user.id))

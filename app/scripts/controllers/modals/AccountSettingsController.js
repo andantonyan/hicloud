@@ -23,7 +23,7 @@ class AccountSettingsController {
 	addSshKey(valid) {
 		var self = this;
 
-		if(!valid || 2 !== self.scope.sshKey.value.trim().split(' ').length) {
+		if(!valid || 3 !== self.scope.sshKey.trim().split(' ').length) {
 			this.scope.sshKeyFormError = 'Please fill in all the required fields';
 			return;
 		}

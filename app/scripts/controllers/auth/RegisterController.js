@@ -20,8 +20,8 @@ class RegisterController {
 			.then((user) => {
 				self.state.go('dashboard');
 			})
-			.catch((error)=> {
-				this.scope.formError = error.toString();
+			.catch((error) => {
+				this.scope.formError = error.message;
 			});
 	}
 
