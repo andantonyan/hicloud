@@ -11,7 +11,7 @@ module.exports = {
 		//TODO: Add express validators
 		req.body.userId = req.token.sid;
 
-		return q.when(hardwareApi.app.create(req.body.userId, req.body.name))
+		return q.when(hardwareApi.app.create(req.token.uname, req.body.name))
                 .then(function(data) {
                     return q.ninvoke(App, 'create', req.body);
                 })

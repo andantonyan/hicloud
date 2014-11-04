@@ -8,44 +8,44 @@ var hwApi = {
     user: {}
 };
 
-hwApi.app.create = function(userId, appName) {
+hwApi.app.create = function(userName, appName) {
     return execCommand(
         'app-create',
         'application has been created successfully',
-        [userId, appName]
+        [userName, appName]
     );
 };
 
-hwApi.user.create = function(userId) {
+hwApi.user.create = function(userName) {
     return execCommand(
         'user-create',
         'user has been created successfully',
-        [userId]
+        [userName]
     );
 };
 
-hwApi.user.getSshKeys = function(userId) {
+hwApi.user.getSshKeys = function(userName) {
     return execCommand(
         'ssh-keys-get',
         'get ssh keys',
-        [userId],
+        [userName],
         'key'
     );
 };
 
-hwApi.user.setSshKey = function(userId, sshKey) {
+hwApi.user.setSshKey = function(userName, sshKey) {
     return execCommand(
         'ssh-keys-set',
         'set ssh keys',
-        [userId, sshKey]
+        [userName, sshKey]
     );
 };
 
-hwApi.user.deleteSshKey = function(userId, sshKey) {
+hwApi.user.deleteSshKey = function(userName, sshKey) {
     return execCommand(
         'ssh-keys-rm',
         'remove ssh keys',
-        [userId, sshKey]
+        [userName, sshKey]
     );
 };
 

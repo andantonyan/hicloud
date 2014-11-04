@@ -26,13 +26,6 @@ app.factory('authService', AuthServiceFactory);
 //Directives
 
 //Filters
-app.filter('dots', function () {
-    return function(input, len) {
-        if (input) {
-            return input.substring(0, len - 1) + (input.length > len - 1 ? '...' : '');
-        }
-    }
-});
 
 //Values
 

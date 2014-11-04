@@ -44,11 +44,11 @@ module.exports = {
   register: function(req, res) {
 
     if (req.body.password !== req.body.confirmPassword) {
-      return res.json({err: 'Password doesn\'t match'});
+      return res.json({ err: 'Passwords do not match' });
     }
 
     if ( -1 !== cfg.disallowedUsernames.indexOf(req.body.uname) ) {
-      return res.json({err: 'This username is not allowed'});
+      return res.json({ err: 'This username is not allowed' });
     }
 
     User.create({
@@ -61,10 +61,12 @@ module.exports = {
         return res.json(err.status, {err: err});
       }
       if (user) {
-        q.when(hardwareApi.user.create(user.id))
+        q.when(hardwareApi.user.create(user.uname))
          .then(function(result) {
            res.json({ user: user, token: sailsTokenAuth.issueToken({sid: user.id}) });
-         }).catch(console.log);
+         }).catch(function(result) {
+           res.json({ err: (result.errno == 'SYS_USER_EXISTS' ? 'This username already exists or cannot be used' : result.message) });
+         });
       }
     });
 

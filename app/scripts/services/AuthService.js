@@ -14,6 +14,7 @@ class AuthService {
         return this.localService.get('auth_token') ? angular.fromJson(this.localService.get('auth_token')).user : {};
     }
 
+    //TODO: new Error() -> String
     login(credentials) {
         var self = this,
             deferred = this.q.defer();
@@ -34,6 +35,7 @@ class AuthService {
         this.localService.unset('auth_token');
     }
 
+    //TODO: new Error() -> String
     register(formData) {
         var self = this,
             deferred = this.q.defer();
