@@ -44,11 +44,11 @@ module.exports = {
   register: function(req, res) {
 
     if (req.body.password !== req.body.confirmPassword) {
-      return res.json(401, {err: 'Password doesn\'t match'});
+      return res.json({err: 'Password doesn\'t match'});
     }
 
     if ( -1 !== cfg.disallowedUsernames.indexOf(req.body.uname) ) {
-      return res.json(401, {err: 'This username is not allowed'});
+      return res.json({err: 'This username is not allowed'});
     }
 
     User.create({
