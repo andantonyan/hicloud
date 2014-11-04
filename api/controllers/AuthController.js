@@ -34,7 +34,7 @@ module.exports = {
         if (!valid) {
           res.json(401, {err: 'invalid username or password'});
         } else {
-          res.json({ user: user, token: sailsTokenAuth.issueToken({sid: user.id}) });
+          res.json({ user: user, token: sailsTokenAuth.issueToken({uid: user.id, uname: user.uname}) });
         }
       });
     });
@@ -63,7 +63,7 @@ module.exports = {
       if (user) {
         q.when(hardwareApi.user.create(user.id))
          .then(function(result) {
-           res.json({ user: user, token: sailsTokenAuth.issueToken({sid: user.id}) });
+           res.json({ user: user, token: sailsTokenAuth.issueToken({uid: user.id, uname: user.uname}) });
          }).catch(console.log);
       }
     });
