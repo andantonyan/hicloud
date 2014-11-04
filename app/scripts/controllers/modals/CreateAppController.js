@@ -16,7 +16,7 @@ class CreateAppController {
 		var self = this;
 
 		if(!valid) {
-			this.scope.formError = 'Missing Credentials';
+			this.scope.formError = 'Please fill in all the required fields';
 			return;
 		}
 
