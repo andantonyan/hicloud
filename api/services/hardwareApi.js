@@ -69,14 +69,10 @@ var execCommand = function(command, successMsg, options, type) {
             switch (type) {
                 case 'key':
                     data.keys = [];
-                    var rows = out.split("\n");
-                    _.forEach(rows, function(row) {
-                        if ( row.trim() != '' ) {
-                            var cols = row.split(' ');
-                            data.keys.push({
-                                name: cols[2],
-                                value: cols[0] + ' ' + cols[1]
-                            });
+                    var keys = out.split("\n");
+                    _.forEach(keys, function(key) {
+                        if ( key.trim() != '' ) {
+                            data.keys.push(key);
                         }
                     });
                     break;

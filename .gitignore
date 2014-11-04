@@ -126,3 +126,4 @@ public/build
 
 # third-party
 APPS/[0-9]*
+config/api.js

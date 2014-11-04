@@ -6,25 +6,20 @@
             table.table.table-striped.table-bordered.table-condensed(ng-show="settings.ssh.keys.length")
                 thead
                     tr
-                        th(width="30%") Name
-                        th(width="65%") Key
+                        th(width="95%") Key
                         th(width="5%")
                 tbody
                     tr(ng-repeat="key in settings.ssh.keys")
-                        td {{key.name}}
-                        td {{key.value | dots: 38 }}
+                        td {{ key | dots: 38 }}
                         td
-                            a.text-danger.nodec.glyphicon.glyphicon-remove(href="javascript:void(0)", ng-click="modal.removeSshKey(key.value + ' ' + key.name)")
+                            a.text-danger.nodec.glyphicon.glyphicon-remove(href="javascript:void(0)", ng-click="modal.removeSshKey(key)")
             div.no-data.no-ssh-keys(ng-show="!settings.ssh.keys.length") No SSH keys added yet...
             button.btn.btn-mini.btn-success.clearfix(ng-click="modal.addkeyForm()") Add new key
-            .add-new-ssh-key(ng-show="sshKey")
+            .add-new-ssh-key(ng-show="showSshKeyField")
                 .alert.alert-warning(role="alert", ng-show="sshKeyFormError") {{sshKeyFormError}}
                 form.form-signin(name="addSshKeyForm", novalidate="")
                     .control-group
-                        input.form-control(type="text", placeholder="Name", name="name", ng-model="sshKey.name", required)
-                    .control-group
-                        br
-                        textarea.form-control(placeholder="Key", name="key", ng-model="sshKey.value", required)
+                        textarea.form-control(placeholder="Key", name="key", ng-model="sshKey", required)
                     .control-group
                         br
                         .btn-group

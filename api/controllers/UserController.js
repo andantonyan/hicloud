@@ -18,19 +18,17 @@ module.exports = {
                 }).catch(next);
     },
     'add-ssh-key': function(req, res, next) {
-        var key = req.body.value + ' ' + req.body.name;
+        var key = req.body.key;
         return q.when(hardwareApi.user.setSshKey(req.token.sid, key))
                 .then(function(data) {
                     res.json(req.body);
                 }).catch(next);
     },
     'delete-ssh-key': function(req, res, next) {
-        var keySpl = req.body.key.split(' ');
-        var key = keySpl.pop();
-        var value = keySpl.join(' ');
-        return q.when(hardwareApi.user.deleteSshKey(req.token.sid, value + ' ' + key))
+        var key = req.body.key
+        return q.when(hardwareApi.user.deleteSshKey(req.token.sid, key))
                 .then(function(data) {
-                    res.json({ name: key, value: value });
+                    res.json({ key: key });
                 }).catch(next);
     },
     apps: function(req, res, next) {
