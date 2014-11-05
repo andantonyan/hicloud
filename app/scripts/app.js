@@ -26,6 +26,7 @@ app.factory('authService', AuthServiceFactory);
 //Directives
 
 //Filters
+app.factory('dotsFilter', DotsFilter);
 
 //Values
 
