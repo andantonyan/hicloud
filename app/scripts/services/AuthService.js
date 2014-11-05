@@ -43,7 +43,6 @@ class AuthService {
 
         this.sailsSocket.post('/api/auth/register', formData)
             .success(function(result) {
-                console.log('***', result)
                 if ( result.err ) {
                     return deferred.reject(result.err);
                 }
@@ -51,7 +50,6 @@ class AuthService {
                 deferred.resolve(result);
             })
             .error(function(result) {
-                console.log('====', result)
                 deferred.reject(result.err);
             });
         return deferred.promise;

@@ -1,0 +1,21 @@
+.dashboard-content.container-fluid(ng-init="modal.init()")
+    .row-fluid
+        .col-md-1
+        .col-md-10
+            h5 Application Info
+            table.text-left.table.table-striped.table-bordered.table-condensed
+                tbody
+                    tr
+                        td Name
+                        td {{ info.name }}
+                    tr
+                        td Stack
+                        td {{ info.type }}
+                    tr
+                        td Description
+                        td {{ info.description }}
+                    tr
+                        td.valign-middle Git URL
+                        td
+                            input.git-url-field.td-input.form-control.input-sm(type="text", onclick="this.select()", value="{{ user.uname }}@{{ host }}:~/{{ info.name }}.git", readonly)
+        .col-md-1

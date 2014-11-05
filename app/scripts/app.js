@@ -14,7 +14,7 @@ app.controller('LoginCtrl', LoginController);
 app.controller('RegisterCtrl', RegisterController);
 app.controller('DashboardCtrl', DashboardController);
 app.controller('CreateAppCtrl', CreateAppController);
-app.controller('ShowAppsCtrl', ShowAppsController);
+app.controller('AppInfoCtrl', AppInfoController);
 app.controller('AccountSettingsCtrl', AccountSettingsController);
 
 //Services

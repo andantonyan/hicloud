@@ -1,12 +1,30 @@
 .main-content(ng-init="dashboard.init()")
-	div(ng-include="'/build/views/includes/header.html'")
-	.dashboard-content.container-fluid
-		.row-fluid
-			.col-md-2
-			.col-md-8.text-center
-				.btn-group
-					a.btn.btn-sm.btn-success(ng-click="dashboard.myApplications()") My Applications
-					a.btn.btn-sm.btn-success(ng-click="dashboard.createApplication()") Create Application
-					a.btn.btn-sm.btn-success(ng-click="dashboard.accountSettings()") Settings
-			.col-md-2
-	div(ng-include="'/build/views/includes/footer.html'")
+    div(ng-include="'/build/views/includes/header.html'")
+    .dashboard-content.container-fluid
+        .row-fluid
+            .col-md-2
+            .col-md-8.text-center
+                .row-fluid
+                    .col-md-1
+                    .col-md-10
+                        h5 My Applications
+                        table.text-left.table.table-striped.table-bordered.table-condensed(ng-show="apps.length")
+                            thead
+                                tr
+                                    th(width="35%") Name
+                                    th(width="20%") Stack
+                                    th(width="45%") Description
+                            tbody
+                                tr(ng-repeat="app in apps")
+                                    td
+                                        a(href="javascript:void(0)", ng-click="dashboard.showApplicationInfo(app.id)") {{app.name | dots: 23 }}
+                                    td {{app.type}}
+                                    td {{app.description | dots: 30 }}
+                        p.center.no-items.no-user-apps(ng-show="!apps.length") No Applications Created Yet
+                    .col-md-1
+                .btn-group
+                    a.btn.btn-medium.btn-success(ng-click="dashboard.createApplication()") Create Application
+                    span &nbsp;
+                    a.btn.btn-medium.btn-success(ng-click="dashboard.accountSettings()") Settings
+            .col-md-2
+    div(ng-include="'/build/views/includes/footer.html'")

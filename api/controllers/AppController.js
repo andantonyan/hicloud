@@ -18,6 +18,12 @@ module.exports = {
                 .then(function (app) {
                     res.json(app);
                 }).catch(next)
+	},
+	info: function(req, res, next) {
+		return q.when(q.ninvoke(App, 'findOneById', req.body.appId))
+                .then(function(info) {
+                    res.json(info);
+                }).catch(next);
 	}
 };
 

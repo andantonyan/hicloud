@@ -7,3 +7,22 @@
 .nodec {
   text-decoration: none !important;
 }
+
+input, textarea {
+  &.ng-invalid:not(.ng-untouched) {
+    border-color: #FF0000 !important;
+  }
+}
+
+.valign-middle {
+  vertical-align: middle !important;
+}
+
+.td-input {
+  font-size: 13px;
+  height: 30px;
+}
+
+.git-url-field {
+  border: 1px dashed #CCCCCC;
+}

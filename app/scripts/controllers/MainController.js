@@ -1,8 +1,9 @@
 class MainController {
 
-	constructor(authService, $scope, $state, $modal) {
+	constructor(authService, userService, $scope, $state, $modal) {
 		this.authService = authService;
-		this.scope = $scope; 
+		this.userService = userService;
+		this.scope = $scope;
 	}
 
 	init() {

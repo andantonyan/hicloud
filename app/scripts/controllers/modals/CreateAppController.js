@@ -1,9 +1,10 @@
 class CreateAppController {
 
-	constructor($modalInstance, $scope, appService) {
+	constructor($modalInstance, $scope, appService, apps) {
 		this.scope = $scope;
 		this.modalInstance = $modalInstance;
 		this.appService = appService;
+		this.scope.apps = apps;
 	}
 
 	init() {
@@ -22,6 +23,7 @@ class CreateAppController {
 
 		this.appService.create(this.scope.app)
 			.then((result) => {
+                self.scope.apps.push(result);
 				self.modalInstance.close(result);
 			})
 			.catch((err) => {

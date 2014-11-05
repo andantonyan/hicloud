@@ -5,19 +5,19 @@
         form.form-signin(novalidate='', name='registerForm')
             .control-group
                 label Username
-                input.form-control(type='text', required='', ng-model='user.uname', name='uname', placeholder='username')
+                input.form-control(type='text', required, ng-model='user.uname', name='uname', placeholder='username')
             .control-group
                 br
                 label Email
-                input.form-control(type='email', required='', ng-model='user.email', name='email', placeholder='email')
+                input.form-control(type='email', required, ng-model='user.email', name='email', placeholder='email')
             .control-group
                 br
                 label Password
-                input.form-control(type='password', required='', ng-model='user.password', name='password', placeholder='password')
+                input.form-control(type='password', required, ng-model='user.password', name='password', placeholder='password')
             .control-group
                 br
                 label Confirm Password
-                input.form-control(type='password', required='', ng-model='user.confirmPassword', name='confirmpassword', placeholder='confirm password')
+                input.form-control(type='password', required, ng-model='user.confirmPassword', name='confirmpassword', placeholder='confirm password')
             .control-group
                 br
                 input.btn.btn-lg.btn-primary.btn-block(type='submit', value='Create Account', ng-click='register.register(registerForm.$valid)')
