@@ -21,7 +21,7 @@ class LoginController {
 				self.state.go('dashboard');
 			})
 			.catch((error) => {
-				this.scope.formError = error.message;
+				this.scope.formError = error;
 			});
 	}
 

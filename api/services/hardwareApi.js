@@ -16,6 +16,14 @@ hwApi.app.create = function(userName, appName) {
     );
 };
 
+hwApi.user.check = function(userName) {
+    return execCommand(
+        'user-check',
+        'no such user exists in system',
+        [userName]
+    );
+};
+
 hwApi.user.create = function(userName) {
     return execCommand(
         'user-create',
@@ -53,44 +61,36 @@ hwApi.user.deleteSshKey = function(userName, sshKey) {
 var execCommand = function(command, successMsg, options, type) {
     var deferred = q.defer();
     var args = [cfg.binPath + '/' + command + '.sh', cfg.newAppDir];
-    User.findOneById(options[0]).exec(function(err, user) {
-        if ( err ) {
-            return deferred.reject({
-                status: 1,
-                errno: 'NO_USER_OBJ',
-                message: err.toString()
-            })
-        }
-        options[0] = user.uname;
+    if ( _.isArray(options) ) {
         args = args.concat(options);
-        exec(args, function(err, out, code) {
-            if ( 0 !== code ) {
-                return deferred.reject({
-                    status: code || 1,
-                    errno: out.replace("\n", "") || err.errno,
-                    message: (err.syscall && err.errno ? err.syscall + ' ' + err.errno : '')
-                });
-            }
-            var data = {};
-            if ( ! _.isUndefined(type) ) {
-                switch (type) {
-                    case 'key':
-                        data.keys = [];
-                        var keys = out.split("\n");
-                        _.forEach(keys, function(key) {
-                            if ( key.trim() != '' ) {
-                                data.keys.push(key);
-                            }
-                        });
-                        break;
-                    default:
-                }
-            }
-            return deferred.resolve({
-                status: 0,
-                message: successMsg,
-                data: data
+    }
+    exec(args, function(err, out, code) {
+        if ( 0 !== code ) {
+            return deferred.reject({
+                status: code || 1,
+                errno: out.replace("\n", "") || err.errno,
+                message: (err.syscall && err.errno ? err.syscall + ' ' + err.errno : '')
             });
+        }
+        var data = {};
+        if ( ! _.isUndefined(type) ) {
+            switch (type) {
+                case 'key':
+                    data.keys = [];
+                    var keys = out.split("\n");
+                    _.forEach(keys, function(key) {
+                        if ( key.trim() != '' ) {
+                            data.keys.push(key);
+                        }
+                    });
+                    break;
+                default:
+            }
+        }
+        return deferred.resolve({
+            status: 0,
+            message: successMsg,
+            data: data
         });
     });
     return deferred.promise;

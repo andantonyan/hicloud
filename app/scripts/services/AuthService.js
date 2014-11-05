@@ -14,18 +14,20 @@ class AuthService {
         return this.localService.get('auth_token') ? angular.fromJson(this.localService.get('auth_token')).user : {};
     }
 
-    //TODO: new Error() -> String
     login(credentials) {
         var self = this,
             deferred = this.q.defer();
 
         this.sailsSocket.post('/api/auth/authenticate', credentials)
-            .success(function (result) {
+            .success(function(result) {
+                if ( result.err ) {
+                    return deferred.reject(result.err);
+                }
                 self.localService.set('auth_token', JSON.stringify(result));
                 deferred.resolve(result);
             })
-            .error(function(data) {
-                deferred.reject(new Error(data.err));
+            .error(function(result) {
+                deferred.reject(result.err);
             });
         return deferred.promise;
 
@@ -35,21 +37,22 @@ class AuthService {
         this.localService.unset('auth_token');
     }
 
-    //TODO: new Error() -> String
     register(formData) {
         var self = this,
             deferred = this.q.defer();
 
         this.sailsSocket.post('/api/auth/register', formData)
-            .success(function (result) {
+            .success(function(result) {
+                console.log('***', result)
                 if ( result.err ) {
-                    deferred.reject(new Error(result.err));
+                    return deferred.reject(result.err);
                 }
                 self.localService.set('auth_token', JSON.stringify(result));
                 deferred.resolve(result);
             })
-            .error(function(data) {
-                deferred.reject(new Error(data.err));
+            .error(function(result) {
+                console.log('====', result)
+                deferred.reject(result.err);
             });
         return deferred.promise;
     }

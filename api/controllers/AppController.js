@@ -9,7 +9,7 @@ q = require('q');
 module.exports = {
 	create: function(req, res, next) {
 		//TODO: Add express validators
-		req.body.userId = req.token.sid;
+		req.body.userId = req.token.uid;
 
 		return q.when(hardwareApi.app.create(req.token.uname, req.body.name))
                 .then(function(data) {

@@ -18,23 +18,23 @@ module.exports = {
     var password = req.param('password');
 
     if ( ! uname || ! password ) {
-      return res.json(401, {err: 'username and password required'});
+      return res.json(401, { err: 'username and password required' });
     }
 
     User.findOneByUname(uname, function(err, user) {
       if ( ! user ) {
-        return res.json(401, {err: 'invalid username or password'});
+        return res.json(401, { err: 'invalid username or password' });
       }
 
       User.validPassword(password, user, function(err, valid) {
         if (err) {
-          return res.json(403, {err: 'forbidden'});
+          return res.json(403, { err: 'forbidden' });
         }
 
         if (!valid) {
-          res.json(401, {err: 'invalid username or password'});
+          res.json(401, { err: 'invalid username or password' });
         } else {
-          res.json({ user: user, token: sailsTokenAuth.issueToken({sid: user.id}) });
+          res.json({ user: user, token: sailsTokenAuth.issueToken({uid: user.id, uname: user.uname}) });
         }
       });
     });
@@ -43,7 +43,7 @@ module.exports = {
 
   register: function(req, res) {
 
-    if (req.body.password !== req.body.confirmPassword) {
+    if ( req.body.password !== req.body.confirmPassword ) {
       return res.json({ err: 'Passwords do not match' });
     }
 
@@ -51,24 +51,31 @@ module.exports = {
       return res.json({ err: 'This username is not allowed' });
     }
 
-    User.create({
-        uname: req.body.uname,
-        email: req.body.email,
-        password: req.body.password
-    }).exec(function(err, user) {
-      if (err) {
+    q.when(hardwareApi.user.check(req.body.uname))
+     .then(function() {
+       return q.ninvoke(User, 'create', req.body);
+     })
+     .then(function(user) {
+        return q.when(hardwareApi.user.create(user.uname))
+                .then(function(result) {
+                    res.json({ user: user, token: sailsTokenAuth.issueToken({uid: user.id, uname: user.uname}) });
+                }).catch(function(result) {
+                    res.json({ err: result.message.length ? result.message : result.errno });
+                });
+     }).catch(function(result) {
         //TODO Write our error system (see eventconsort :))
-        return res.json(err.status, {err: err});
-      }
-      if (user) {
-        q.when(hardwareApi.user.create(user.uname))
-         .then(function(result) {
-           res.json({ user: user, token: sailsTokenAuth.issueToken({sid: user.id}) });
-         }).catch(function(result) {
-           res.json({ err: (result.errno == 'SYS_USER_EXISTS' ? 'This username already exists or cannot be used' : result.message) });
-         });
-      }
-    });
+        var err = 'Unknown error';
+        if ( result.errno == 'SYS_USER_EXISTS' ) {
+            err = 'This username already exists or cannot be used';
+        } else if ( result.message && result.message.length ) {
+            err = result.message;
+        } else if ( result.toJSON ) {
+            if ( result.toJSON().error == 'E_VALIDATION' ) {
+                err = 'Form filled in incorrect or such user already exists';
+            }
+        }
+        res.json({ err: err });
+     });
 
   }
 

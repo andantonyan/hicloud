@@ -2,7 +2,7 @@
 
 USERDIR="$1/$2"
 APPDIR="$USERDIR/$3.git"
-USER="appuser_$2"
+USER="$2"
 
 sudo mkdir "$APPDIR"
 sudo su - "$USER" -c "cd $APPDIR && git --bare init"
