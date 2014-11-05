@@ -2,5 +2,6 @@ var rootDir = process.cwd();
 
 module.exports.api = {
     binPath: rootDir + '/api/bin', // without trailing slash
-    newAppDir: '/var/HiCloudApps' // without trailing slash
+    newAppDir: '/var/HiCloudRepos', // without trailing slash
+    deployDir: '/var/HiCloudWebRoot' // without trailing slash
 };
