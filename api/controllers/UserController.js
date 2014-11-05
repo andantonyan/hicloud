@@ -32,7 +32,7 @@ module.exports = {
                 }).catch(next);
     },
     apps: function(req, res, next) {
-        return q.when(App.find({ userId: req.token.uname }))
+        return q.when(App.find({ userId: req.token.uid }))
                 .then(function(apps) {
                     res.json(apps);
                 }).catch(next);
