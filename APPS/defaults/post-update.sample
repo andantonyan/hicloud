@@ -5,6 +5,15 @@
 #
 # To enable this hook, rename this file to "post-update".
 
+
 exec git update-server-info
 
-../../../../api/bin/apps-node-restart.sh $PWD/..
+PATHARR=(${PWD//\// })
+UNAME="${PATHARR[${#PATHARR[@]} - 3]}"
+GITNAME="${PATHARR[${#PATHARR[@]} - 2]}"
+REPOPATH="${UNAME}/${GITNAME}"
+DEPLOYPATH=${REPOPATH//\.git/}
+
+cd "__DEPLOY_DIR__/${DEPLOYPATH}" && git pull
+
+#../../../../api/bin/apps-node-restart.sh $PWD/..
