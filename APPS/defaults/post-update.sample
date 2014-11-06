@@ -6,7 +6,8 @@ GITNAME="${PATHARR[${#PATHARR[@]}-1]}"
 REPOPATH="${UNAME}/${GITNAME}"
 DEPLOYPATH=${REPOPATH//\.git/}
 
-cd "__DEPLOY_DIR__/${DEPLOYPATH}" && git pull
+unset GIT_DIR
+cd "__DEPLOY_DIR__/${DEPLOYPATH}" && git pull origin master
 
 #../../../../api/bin/apps-node-restart.sh $PWD/..
 
