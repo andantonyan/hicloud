@@ -8,9 +8,11 @@ DEPLOYPATH=${REPOPATH//\.git/}
 
 unset GIT_DIR
 cd "__DEPLOY_DIR__/${DEPLOYPATH}"
-MAINFILE=`cat Procfile`
+MAINFILE=`cat __init__`
 
-forever stop "$MAINFILE"
+if [ "$MAINFILE" != "" ]; then
+    forever stop "$MAINFILE"
+fi
 
 echo Getting data from git...
 git pull origin master &> /dev/null
@@ -19,7 +21,11 @@ echo [done]
 echo Installing Node.js dependencies...
 npm install
 
-export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
+if [ "$MAINFILE" == "" ]; then
+    echo Please create __init__ file and add main .js filename into it...
+else
+    export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
+fi
 
 #__API_DIR__/bin/apps-node-restart.sh $PWD/..
 
