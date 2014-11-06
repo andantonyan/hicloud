@@ -54,8 +54,10 @@ class DashboardController extends MainController {
 		});
 		modalInstance.result
 			.then((result) => {
-				self._.remove(self.scope.apps, {id: appId});
-			})
+				if (result) {
+					self._.remove(self.scope.apps, {id: appId});
+				}
+			});
 	}
 
 	showApplicationInfo(appId) {
