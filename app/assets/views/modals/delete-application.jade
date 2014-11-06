@@ -1,10 +1,7 @@
 .dashboard-content.container-fluid(ng-init="modal.init()")
     .row-fluid
-        .col-md-1
-        .col-md-10
-            h5.text-center Are you sure delete this application?
-            .text-center
-                .btn-group
-                    input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.close()", value="Cancel")
-                    input.btn.btn-sm.btn-success(type="submit", ng-click="modal.done()", value="Delete Application")
-        .col-md-1
+        h5.text-center Are you sure delete this application?
+        .text-center
+            .btn-group
+                input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.close()", value="Cancel")
+                input.btn.btn-sm.btn-success(type="submit", ng-click="modal.done()", value="Delete Application")

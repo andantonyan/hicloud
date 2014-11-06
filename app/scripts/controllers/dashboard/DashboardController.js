@@ -48,6 +48,7 @@ class DashboardController extends MainController {
 			templateUrl: '/build/views/modals/delete-application.html',
 			controller: 'DeleteAppCtrl',
 			controllerAs: 'modal',
+			size: 'sm',
             resolve: {
                 appId: function() { return appId; }
             }
