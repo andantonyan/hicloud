@@ -16,7 +16,7 @@ sudo sed -i s#__DEPLOY_DIR__#$WWWDIR#g "$USERAPPDIR/hooks/post-update"
 sudo chmod g+rwx "$WWWDIR"
 sudo su - "$USER" -c "mkdir -p \"$USERWWWDIR\""
 sudo chown -R "$USER".nodejs "$USERAPPDIR" "$USERWWWDIR"
-sudo su - "$USER" -c "cd \"$USERWWWDIR/$APPNAME\" && git clone \"$USERAPPDIR\" \"$APPNAME\""
-sudo chown -R "$USER".nodejs "$USERWWWDIR"
+sudo su - "$USER" -c "cd \"$USERWWWDIR\" && git clone \"$USERAPPDIR\" \"$APPNAME\""
+sudo chown -R "$USER".nodejs "$USERWWWDIR/$APPNAME"
 
 exit 0
