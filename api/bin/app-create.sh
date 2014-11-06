@@ -10,8 +10,8 @@ sed -i s#__DEPLOY_DIR__#$4#g $1/defaults/post-update.sample
 sudo su - "$USER" -c "cp $1/defaults/post-update.sample $APPDIR/hooks/post-update"
 sudo chown -R "$USER".nodejs "$APPDIR"
 sudo chmod g+rwx "$4"
-mkdir -p "$4/$2" && cd "$4/$2"
-sudo chown "$USER".nodejs .
+sudo su - "$USER" -c "mkdir -p \"$4/$2\" && cd \"$4/$2\""
+sudo chown "$USER".nodejs "$4/$2"
 sudo su - "$USER" -c "git clone \"$APPDIR\" \"$3\""
 
 exit 0
