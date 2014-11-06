@@ -16,6 +16,14 @@ hwApi.app.create = function(userName, appName) {
     );
 };
 
+hwApi.app.delete = function(userName, appName) {
+    return execCommand(
+        'app-delete',
+        'application has been deleted successfully',
+        [userName, appName, cfg.deployDir]
+    );
+};
+
 hwApi.user.check = function(userName) {
     return execCommand(
         'user-check',
