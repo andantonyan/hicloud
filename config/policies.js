@@ -65,6 +65,7 @@ module.exports.policies = {
   },
 
   'AppController': {
-    'create': ['tokenAuth']
+    'create': ['tokenAuth'],
+    'delete': ['tokenAuth']
   }
 };

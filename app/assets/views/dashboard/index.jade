@@ -14,12 +14,15 @@
                                     th(width="35%") Name
                                     th(width="20%") Stack
                                     th(width="45%") Description
+                                    td
                             tbody
                                 tr(ng-repeat="app in apps")
                                     td
                                         a(href="javascript:void(0)", ng-click="dashboard.showApplicationInfo(app.id)") {{app.name | dots: 23 }}
                                     td {{app.type}}
                                     td {{app.description | dots: 30 }}
+                                    td
+                                        a.text-danger.nodec.glyphicon.glyphicon-remove(href="javascript:void(0)", ng-click="dashboard.deleteApplication(app.id)")
                         p.center.no-items.no-user-apps(ng-show="!apps.length") No Applications Created Yet
                     .col-md-1
                 .btn-group

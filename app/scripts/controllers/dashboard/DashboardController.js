@@ -2,11 +2,12 @@
 //TODO: remove MainController extend workaround - $scope is different
 //TODO: why traceur owerwrited child class constructor
 class DashboardController extends MainController {
-	constructor(authService, userService, $scope, $state, $modal) {
-		super(authService, userService, $scope);
+	constructor(authService, userService, $scope, $state, $modal, lodash) {
+		super(authService, userService, $scope, $state, $modal, lodash);
 		this.scope = $scope;
 		this.state = $state;
 		this.modal = $modal;
+		this._ = lodash;
 	}
 
 	init() {
@@ -38,6 +39,22 @@ class DashboardController extends MainController {
 			.then((result) => {
 				//TODO: broadcast success
 				// console.log('result from backend', result);
+			})
+	}
+
+	deleteApplication(appId) {
+        var self = this;
+		var modalInstance = this.modal.open({
+			templateUrl: '/build/views/modals/delete-application.html',
+			controller: 'DeleteAppCtrl',
+			controllerAs: 'modal',
+            resolve: {
+                appId: function() { return appId; }
+            }
+		});
+		modalInstance.result
+			.then((result) => {
+				self._.remove(self.scope.apps, {id: appId});
 			})
 	}
 

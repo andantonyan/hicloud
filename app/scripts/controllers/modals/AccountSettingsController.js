@@ -1,9 +1,10 @@
 class AccountSettingsController {
 
-	constructor($modalInstance, $scope, userService) {
+	constructor($modalInstance, $scope, userService, lodash) {
 		this.scope = $scope;
 		this.modalInstance = $modalInstance;
 		this.userService = userService;
+		this._ = lodash;
 	}
 
 	init() {

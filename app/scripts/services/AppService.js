@@ -22,6 +22,23 @@ class AppService {
         return deferred.promise;
     }
 
+    delete(appId) {
+        var self = this,
+            deferred = this.q.defer();
+
+        this.sailsSocket.post('/api/app/delete', {appId: appId})
+            .success(function (result) {
+                if (result.err) {
+                    return deferred.reject(new Error('error when trying delete application, ' + JSON.stringify(result.err)));
+                }
+                deferred.resolve(result);
+            })
+            .error(function(error) {
+                deferred.reject(new Error('error when trying delete application, ' + JSON.stringify(error)));
+            });
+        return deferred.promise;
+    }
+
     info(appId) {
         var self = this,
             deferred = this.q.defer();

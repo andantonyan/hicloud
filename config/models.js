@@ -28,6 +28,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
   // migrate: 'alter'
+  connection: 'hiCloudMongodbServer',
   migrate: 'alter'
 
 };
