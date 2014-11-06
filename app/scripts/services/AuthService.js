@@ -1,7 +1,7 @@
 class AuthService {
 
-    constructor($q, $sailsSocket, localService) {
-        this.sailsSocket = $sailsSocket;
+    constructor($q, networkService, localService) {
+        this.networkService = networkService;
         this.localService = localService;
         this.q = $q;
     }
@@ -18,7 +18,7 @@ class AuthService {
         var self = this,
             deferred = this.q.defer();
 
-        this.sailsSocket.post('/api/auth/authenticate', credentials)
+        this.networkService.post('/api/auth/authenticate', credentials)
             .success(function(result) {
                 if ( result.err ) {
                     return deferred.reject(result.err);
@@ -41,7 +41,7 @@ class AuthService {
         var self = this,
             deferred = this.q.defer();
 
-        this.sailsSocket.post('/api/auth/register', formData)
+        this.networkService.post('/api/auth/register', formData)
             .success(function(result) {
                 if ( result.err ) {
                     return deferred.reject(result.err);
@@ -56,6 +56,6 @@ class AuthService {
     }
 }
 
-function AuthServiceFactory($q, $sailsSocket, localService) {
-    return new AuthService($q, $sailsSocket, localService);
+function AuthServiceFactory($q, networkService, localService) {
+    return new AuthService($q, networkService, localService);
 }
