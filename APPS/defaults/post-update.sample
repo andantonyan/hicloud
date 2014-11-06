@@ -7,7 +7,11 @@ REPOPATH="${UNAME}/${GITNAME}"
 DEPLOYPATH=${REPOPATH//\.git/}
 
 unset GIT_DIR
-cd "__DEPLOY_DIR__/${DEPLOYPATH}" && git pull origin master
+cd "__DEPLOY_DIR__/${DEPLOYPATH}"
+
+echo Getting data from git...
+git pull origin master &> /dev/null
+echo [done]
 
 #../../../../api/bin/apps-node-restart.sh $PWD/..
 
