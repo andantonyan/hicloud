@@ -8,11 +8,19 @@ DEPLOYPATH=${REPOPATH//\.git/}
 
 unset GIT_DIR
 cd "__DEPLOY_DIR__/${DEPLOYPATH}"
+MAINFILE=`cat Procfile`
+
+forever stop "$MAINFILE"
 
 echo Getting data from git...
 git pull origin master &> /dev/null
 echo [done]
 
-#../../../../api/bin/apps-node-restart.sh $PWD/..
+echo Installing Node.js dependencies...
+npm install
+
+export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
+
+#__API_DIR__/bin/apps-node-restart.sh $PWD/..
 
 exec git update-server-info

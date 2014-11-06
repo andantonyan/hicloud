@@ -12,7 +12,7 @@ hwApi.app.create = function(userName, appName) {
     return execCommand(
         'app-create',
         'application has been created successfully',
-        [userName, appName, cfg.deployDir]
+        [userName, appName, cfg.deployDir, __dirname + '/../bin']
     );
 };
 
