@@ -1,0 +1,6 @@
+.dashboard-content.container-fluid(ng-init="modal.init()")
+	.row-fluid
+		.jumbotron
+			h4 Are you sure?
+			input.btn.btn-sm.btn-warning(type="reset", ng-click="modal.close()", value="Cancel")
+			input.btn.btn-sm.btn-success(type="submit", ng-click="modal.done()", value="Delete Application")
