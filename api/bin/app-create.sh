@@ -1,16 +1,22 @@
 #!/bin/sh
 
-USERDIR="$1/$2"
-APPDIR="$USERDIR/$3.git"
+APPDIR="$1"
 USER="$2"
+APPNAME="$3"
+WWWDIR="$4"
 
-sudo su - "$USER" -c "mkdir \"$APPDIR\""
-sudo su - "$USER" -c "cd $APPDIR && git --bare init"
-sudo su - "$USER" -c "cp $1/defaults/post-update.sample $APPDIR/hooks/post-update"
-sudo sed -i s#__DEPLOY_DIR__#$4#g "$APPDIR/hooks/post-update"
-sudo chmod g+rwx "$4"
-sudo su - "$USER" -c "mkdir -p \"$4/$2\""
-sudo chown -R "$USER".nodejs "$APPDIR" "$4/$2"
-sudo su - "$USER" -c "cd \"$4/$2\" && git clone \"$APPDIR\" \"$3\""
+USERDIR="$APPDIR/$USER"
+USERAPPDIR="$USERDIR/$APPNAME.git"
+USERWWWDIR="$WWWDIR/$USER"
+
+sudo su - "$USER" -c "mkdir \"$USERAPPDIR\""
+sudo su - "$USER" -c "cd $USERAPPDIR && git --bare init"
+sudo su - "$USER" -c "cp $APPDIR/defaults/post-update.sample $USERAPPDIR/hooks/post-update"
+sudo sed -i s#__DEPLOY_DIR__#$WWWDIR#g "$USERAPPDIR/hooks/post-update"
+sudo chmod g+rwx "$WWWDIR"
+sudo su - "$USER" -c "mkdir -p \"$USERWWWDIR\""
+sudo chown -R "$USER".nodejs "$USERAPPDIR" "$USERWWWDIR"
+sudo su - "$USER" -c "cd \"$USERWWWDIR/$APPNAME\" && git clone \"$USERAPPDIR\" \"$APPNAME\""
+sudo chown -R "$USER".nodejs "$USERWWWDIR"
 
 exit 0
