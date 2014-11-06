@@ -18,5 +18,6 @@ sudo su - "$USER" -c "mkdir -p \"$USERWWWDIR\""
 sudo chown -R "$USER".nodejs "$USERAPPDIR" "$USERWWWDIR"
 sudo su - "$USER" -c "cd \"$USERWWWDIR\" && git clone \"$USERAPPDIR\" \"$APPNAME\""
 sudo chown -R "$USER".nodejs "$USERWWWDIR/$APPNAME"
+sudo chown -R "$USER".nodejs "$USERWWWDIR/$APPNAME/.git"
 
 exit 0
