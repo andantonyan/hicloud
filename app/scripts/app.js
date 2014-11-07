@@ -38,7 +38,7 @@ app.factory('authInterceptor', AuthInterceptor);
 app.factory('authInterceptorSocket', AuthInterceptorSocket);
 
 //Constants
-app.constant('serviceCallsType', '$sailsSocket'); // [$sailsSocket, $http]
+app.constant('serviceCallsType', '$http'); // [$sailsSocket, $http]
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $sailsSocketProvider) {
 	$httpProvider.interceptors.push('authInterceptor');

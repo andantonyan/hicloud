@@ -26,8 +26,8 @@ class CreateAppController {
                 self.scope.apps.push(result);
 				self.modalInstance.close(result);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch((result) => {
+				this.scope.formError = result.err || result.message || result;
 			})
 	}
 
