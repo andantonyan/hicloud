@@ -23,8 +23,7 @@ npm install
 
 if [ -f hi ]; then
     MAINFILE=`cat hi`
-    export PORT=$((`id -u` + 1000))
-    nohup forever start "$MAINFILE" &> /dev/null &
+    export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
 else
     echo "Please create 'hi' file and add main .js filename into it..."
 fi
