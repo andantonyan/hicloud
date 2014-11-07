@@ -14,6 +14,7 @@ class AppInfoController {
 		this.appService.info(this.appId)
 			.then((info) => {
                 self.scope.user = self.authService.getUser();
+				self.scope.protocol = window.location.protocol;
 				self.scope.host = window.location.hostname;
 				self.scope.info = info;
 			});

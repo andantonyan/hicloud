@@ -19,7 +19,6 @@ sudo su - "$USER" -c "cd $USERAPPDIR && git --bare init"
 sudo su - "$USER" -c "cp $APPDIR/defaults/post-update.sample $USERHOOK"
 sudo sed -i s#__DEPLOY_DIR__#$WWWDIR#g $USERHOOK
 sudo sed -i s#__API_DIR__#$BINDIR#g $USERHOOK
-sudo sh -c "echo \"$APPNAME.hicloud.am. IN A 185.44.228.105\" >> /etc/bind/zones/db.hicloud.am"
 sudo cp "$APPDIR/defaults/nginx_vhost" $USERNGINXCONF
 sudo sed -i s#__APPNAME__#$APPNAME#g $USERNGINXCONF
 sudo sed -i s#__PORT__#$PORT#g $USERNGINXCONF
