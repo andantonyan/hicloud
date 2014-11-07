@@ -1,15 +1,16 @@
 class AppService {
 
-    constructor($q, networkService) {
+    constructor($q, networkService, $http) {
         this.networkService = networkService;
         this.q = $q;
+        this.$http = $http;
     }
    
     create(formData) {
         var self = this,
             deferred = this.q.defer();
 
-         this.networkService.post('/api/app/create', formData)
+         this.$http.post('/api/app/create', formData)
             .success(function (result) {
                 if (result.err) {
                     return deferred.reject(new Error('error when trying create application, ' + JSON.stringify(result.err)));
@@ -58,6 +59,6 @@ class AppService {
 
 }
 
-function AppServiceFactory($q, networkService) {
-    return new AppService($q, networkService);
+function AppServiceFactory($q, networkService, $http) {
+    return new AppService($q, networkService, $http);
 }
