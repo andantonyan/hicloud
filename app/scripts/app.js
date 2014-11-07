@@ -14,14 +14,17 @@ app.controller('LoginCtrl', LoginController);
 app.controller('RegisterCtrl', RegisterController);
 app.controller('DashboardCtrl', DashboardController);
 app.controller('CreateAppCtrl', CreateAppController);
+app.controller('DeleteAppCtrl', DeleteAppController);
 app.controller('AppInfoCtrl', AppInfoController);
 app.controller('AccountSettingsCtrl', AccountSettingsController);
 
 //Services
+app.factory('networkService', NetworkServiceFactory);
 app.factory('localService', LocalServiceFactory);
 app.factory('appService', AppServiceFactory);
 app.factory('userService', UserServiceFactory);
 app.factory('authService', AuthServiceFactory);
+
 
 //Directives
 
@@ -35,6 +38,7 @@ app.factory('authInterceptor', AuthInterceptor);
 app.factory('authInterceptorSocket', AuthInterceptorSocket);
 
 //Constants
+app.constant('serviceCallsType', '$sailsSocket'); // [$sailsSocket, $http]
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $sailsSocketProvider) {
 	$httpProvider.interceptors.push('authInterceptor');

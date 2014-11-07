@@ -1,6 +1,6 @@
 class HomeController extends MainController {
-	constructor(authService, $scope) {
-		super(authService, $scope)
+	constructor(authService, userService, $scope, $state, $modal) {
+		super(authService, userService, $scope, $state, $modal)
 	}
 
 	init() {

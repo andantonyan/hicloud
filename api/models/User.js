@@ -24,6 +24,13 @@ module.exports = {
     encryptedPassword: {
       type: 'string'
     },
+    app: {
+      model: 'app'
+    },
+    deletedAt: {
+      type: 'date',
+      defaultsTo: null
+    },
     toJSON: function() {
       var obj = this.toObject();
       delete obj.encryptedPassword;

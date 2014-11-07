@@ -125,5 +125,9 @@ public/build
 
 
 # third-party
-APPS/[0-9]*
+APPS/*
+!APPS/defaults
+
 config/api.js
+config/connections.js
+WWW
