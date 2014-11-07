@@ -21,10 +21,10 @@ echo [done]
 echo Installing Node.js dependencies...
 npm install
 
-if [ "$MAINFILE" == "" ]; then
-    echo "Please create 'hi' file and add main .js filename into it..."
-else
+if [ -f hi ]; then
     export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
+else
+    echo "Please create 'hi' file and add main .js filename into it..."
 fi
 
 #__API_DIR__/bin/apps-node-restart.sh $PWD/..
