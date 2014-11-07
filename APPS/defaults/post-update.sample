@@ -9,8 +9,8 @@ DEPLOYPATH=${REPOPATH//\.git/}
 unset GIT_DIR
 cd "__DEPLOY_DIR__/${DEPLOYPATH}"
 
-if [ -f __init__ ]; then
-    MAINFILE=`cat __init__`
+if [ -f "__init__" ]; then
+    MAINFILE=`cat "__init__"`
     forever stop "$MAINFILE"
 fi
 
