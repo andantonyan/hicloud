@@ -1,0 +1,12 @@
+server {
+
+	listen 80;
+	server_name __APPNAME__.hicloud.am;
+
+	index index.html index.htm;
+
+    location / {
+        proxy_pass http://127.0.0.1:__PORT__;
+    }
+
+}
