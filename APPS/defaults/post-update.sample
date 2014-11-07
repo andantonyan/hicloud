@@ -6,8 +6,29 @@ GITNAME="${PATHARR[${#PATHARR[@]}-1]}"
 REPOPATH="${UNAME}/${GITNAME}"
 DEPLOYPATH=${REPOPATH//\.git/}
 
-cd "__DEPLOY_DIR__/${DEPLOYPATH}" && git pull
+unset GIT_DIR
+cd "__DEPLOY_DIR__/${DEPLOYPATH}"
 
-#../../../../api/bin/apps-node-restart.sh $PWD/..
+if [ -f hi ]; then
+    MAINFILE=`cat hi`
+    forever stop "$MAINFILE"
+fi
+
+echo Getting data from git...
+git pull origin master &> /dev/null
+echo [done]
+
+echo Installing Node.js dependencies...
+npm install
+
+if [ -f hi ]; then
+    MAINFILE=`cat hi`
+    export PORT=$((`id -u` + 1000))
+    nohup forever start "$MAINFILE" &
+else
+    echo "Please create 'hi' file and add main .js filename into it..."
+fi
+
+#__API_DIR__/bin/apps-node-restart.sh $PWD/..
 
 exec git update-server-info
