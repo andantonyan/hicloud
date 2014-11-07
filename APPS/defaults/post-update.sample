@@ -22,6 +22,7 @@ echo Installing Node.js dependencies...
 npm install
 
 if [ -f hi ]; then
+    MAINFILE=`cat hi`
     export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
 else
     echo "Please create 'hi' file and add main .js filename into it..."
