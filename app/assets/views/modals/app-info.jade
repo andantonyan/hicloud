@@ -18,4 +18,8 @@
                         td.valign-middle Git URL
                         td
                             input.git-url-field.td-input.form-control.input-sm(type="text", onclick="this.select()", value="{{ user.uname }}@{{ host }}:~/{{ info.name }}.git", readonly)
+                    tr
+                        td.valign-middle Http URL
+                        td
+                            input.git-url-field.td-input.form-control.input-sm(type="text", onclick="this.select()", value="{{ protocol }}//{{ info.name }}.{{ host }}", readonly)
         .col-md-1
