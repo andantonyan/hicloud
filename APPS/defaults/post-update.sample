@@ -9,8 +9,8 @@ DEPLOYPATH=${REPOPATH//\.git/}
 unset GIT_DIR
 cd "__DEPLOY_DIR__/${DEPLOYPATH}"
 
-if [ -f "__init__" ]; then
-    MAINFILE=`cat "__init__"`
+if [ -f hi ]; then
+    MAINFILE=`cat hi`
     forever stop "$MAINFILE"
 fi
 
@@ -22,7 +22,7 @@ echo Installing Node.js dependencies...
 npm install
 
 if [ "$MAINFILE" == "" ]; then
-    echo Please create __init__ file and add main .js filename into it...
+    echo "Please create 'hi' file and add main .js filename into it..."
 else
     export PORT=$((`id -u` + 1000)) && forever start "$MAINFILE"
 fi
