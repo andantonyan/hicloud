@@ -5,10 +5,13 @@ class NetworkService {
         switch (serviceCallsType) {
             case '$sailsSocket':
                 return $sailsSocket;
+                break;
             case '$http':
                 return $http;
+                break;
             default:
                 return {};
+                break;
         }
 
     }
