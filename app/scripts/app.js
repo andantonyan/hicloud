@@ -36,13 +36,17 @@ app.factory('dotsFilter', DotsFilter);
 //Interceptors
 app.factory('authInterceptor', AuthInterceptor);
 app.factory('authInterceptorSocket', AuthInterceptorSocket);
+app.factory('requestUriInterceptor', RequestUriInterceptor);
 
 //Constants
-app.constant('serviceCallsType', '$http'); // [$sailsSocket, $http]
+app.constant('serviceCallsType', '$sailsSocket'); // [$sailsSocket, $http]
+app.constant('requestUri', ''); // default --> ''
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $sailsSocketProvider) {
 	$httpProvider.interceptors.push('authInterceptor');
+	$httpProvider.interceptors.push('requestUriInterceptor');
     $sailsSocketProvider.interceptors.push('authInterceptorSocket');
+    $sailsSocketProvider.interceptors.push('requestUriInterceptor');
 
 	$stateProvider
 		.state('home', {
