@@ -6,6 +6,7 @@ USER="$2"
 sudo mkdir "$USERDIR"
 sudo useradd "$USER"
 sudo usermod -d "$USERDIR" "$USER"
+sudo usermod -aG appusers "$USER"
 sudo chown -R "$USER"."$USER" "$USERDIR"
 
 if [ ! -d "$USERDIR/.ssh" ]; then
