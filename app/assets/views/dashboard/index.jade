@@ -26,8 +26,8 @@
                         p.center.no-items.no-user-apps(ng-show="!apps.length") No Applications Created Yet
                     .col-md-1
                 .btn-group
-                    a.btn.btn-medium.btn-success(ng-click="dashboard.createApplication()") Create Application
+                    a.btn.btn-medium.btn-success(ng-click="dashboard.createApplication()") <i class="fa fa-plus white"></i> Create Application
                     span &nbsp;
-                    a.btn.btn-medium.btn-success(ng-click="dashboard.accountSettings()") Settings
+                    a.btn.btn-medium.btn-info(ng-click="dashboard.accountSettings()") <i class="fa fa-cogs"></i> Settings
             .col-md-2
     div(ng-include="'/build/views/includes/footer.html'")
