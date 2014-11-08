@@ -1,14 +1,11 @@
 class MainController {
 
-	constructor(authService, userService, $scope, $state, $modal, lodash) {
-		this.authService = authService;
-		this.userService = userService;
+	constructor($scope) {
 		this.scope = $scope;
 	}
 
 	init() {
-		this.scope.isAuthenticated = this.authService.isAuthenticated();
-		this.scope.user = this.authService.getUser();
+		
 	}
   
 }

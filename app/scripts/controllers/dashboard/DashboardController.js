@@ -1,21 +1,27 @@
 //TODO: find out why authService has to be first parameter
 //TODO: remove MainController extend workaround - $scope is different
 //TODO: why traceur owerwrited child class constructor
-class DashboardController extends MainController {
-	constructor(authService, userService, $scope, $state, $modal, lodash) {
-		super(authService, userService, $scope, $state, $modal, lodash);
+class DashboardController {
+	constructor($scope, $state, $modal, lodash, authService, userService) {
 		this.scope = $scope;
 		this.state = $state;
 		this.modal = $modal;
 		this._ = lodash;
+		this.authService = authService;
+		this.userService = userService;
 	}
 
 	init() {
-		super.init();
         var self = this;
+
+        this.scope.isAuthenticated = this.authService.isAuthenticated();
+        
 		if(!this.scope.isAuthenticated) {
-			this.state.go('home');
+			return this.state.go('home');
 		}
+
+		this.scope.user = this.authService.getUser();
+
         this.userService.myApps()
             .then((apps) => {
                 self.scope.apps = apps;

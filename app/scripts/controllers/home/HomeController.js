@@ -1,10 +1,12 @@
-class HomeController extends MainController {
-	constructor(authService, userService, $scope, $state, $modal) {
-		super(authService, userService, $scope, $state, $modal)
+class HomeController {
+	constructor($scope, authService, userService) {
+		this.scope = $scope;
+		this.authService = authService;
 	}
 
 	init() {
-		super.init();
+        this.scope.isAuthenticated = this.authService.isAuthenticated();
+		this.scope.user = this.authService.getUser();
 	}
   
 }
