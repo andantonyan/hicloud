@@ -1,0 +1,12 @@
+$TTL    3600
+@       IN      SOA     pgmcode.net. ns1.pgmcode.net. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                           3600 )       ; Negative Cache TTL
+;
+@                IN      NS      pgmcode.net.
+pgmcode.net.     IN       A      185.44.228.105
+@                IN      NS      ns1.pgmcode.net.
+ns1.pgmcode.net. IN       A      185.44.228.105

@@ -17,3 +17,12 @@ deps:
 	@echo installing forever...
 	@sudo npm -g install forever
 	@npm -g	install forever
+
+migrate:
+	@echo making symlinks...
+	@cd /var/HiCloudRepos/ && ln -s /var/nodejs/HiCloudWeb/APPS/defaults/
+	@echo linking nginx configs...
+	@cd /etc/nginx/sites-available
+	@ln -s /var/nodejs/HiCloudWeb/APPS/defaults/hicloud.am
+	@ln -s /var/nodejs/HiCloudWeb/APPS/defaults/app.hicloud.am
+	@echo [done]
