@@ -7,7 +7,7 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar-brand(href="/#/home") HiCloud
+				a.navbar-brand(href="/#/home") <i class="fa fa-cloud"></i> HiCloud
 			.collapse.navbar-collapse(collapse="isCollapsed")
 				ul.nav.navbar-nav.navbar-right
 					li(ng-hide="isAuthenticated")
@@ -15,10 +15,10 @@ header(ng-controller='HeaderCtrl as header', ng-init="header.init()")
 					li(ng-hide="isAuthenticated")
 						a(href="/#/register") Register
 					li(ng-show="isAuthenticated")
-						a(href="/#/dashboard") Dashboard
+						a(href="/#/dashboard") <i class="fa fa-tachometer"></i>  Dashboard
 					li.dropdown(ng-show="isAuthenticated")
 						a.dropdown-toggle(data-toggle="dropdown", href="#", aria-expanded="false")
-							| {{user.uname}}
+							| <i class="fa fa-user"></i> {{user.uname}}
 							span.caret
 						ul.dropdown-menu(role="menu")
 							li
