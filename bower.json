@@ -19,6 +19,7 @@
     "traceur": "~0.0.72",
     "sails.io.js": "~0.10.3",
     "angularSails": "~0.10.0-pre",
-    "ng-lodash": "~0.0.2"
+    "ng-lodash": "~0.0.2",
+    "font-awesome": "~4.2.0"
   }
 }
